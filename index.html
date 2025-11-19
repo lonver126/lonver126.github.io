@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shun Zhang, MD, MPH - Director of AI & Data Science</title>
+    <meta name="description" content="Portfolio and Resume of Shun Zhang, Director of AI and Data Science specializing in Generative AI, Digital Health, and Enterprise Strategy.">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #003366; /* Deep Corporate Blue */
+            --secondary: #005b96;
+            --accent: #00a8cc;
+            --bg-light: #f4f7f6;
+            --text-dark: #2c3e50;
+            --text-light: #5a6b7c;
+            --white: #ffffff;
+            --border: #e1e4e8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 3fr 1fr;
+            }
+        }
+
+        /* --- Main Content Styling --- */
+        section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* --- Summary --- */
+        .summary-list {
+            list-style: none;
+        }
+        .summary-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .summary-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        /* --- Experience Timeline --- */
+        .job {
+            margin-bottom: 2.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--border);
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .company {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .job-details {
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .job-details ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .job-details li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* --- Sidebar Styling --- */
+        .sidebar-section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #eef2f5;
+            color: var(--text-dark);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            border: 1px solid var(--border);
+        }
+
+        .education-item, .award-item {
+            margin-bottom: 1rem;
+        }
+        .degree { font-weight: 600; font-size: 0.95rem; }
+        .school { font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- Publications Scrollbox --- */
+        .publications-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 1rem;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .pub-item {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .pub-item:last-child { border-bottom: none; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header>
+        <h1>Shun Zhang, MD, MPH</h1>
+        <div class="subtitle">Director of AI and Data Science | Enterprise AI Strategy | Digital Health Innovation</div>
+        
+        <div class="contact-info">
+            <a href="mailto:Lonver126@hotmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i> Lonver126@hotmail.com
+            </a>
+            <span class="contact-item">
+                <i class="fas fa-phone"></i> (817) 896-7968
+            </span>
+            <span class="contact-item">
+                <i class="fas fa-map-marker-alt"></i> South San Francisco, CA
+            </span>
+            <!-- Link to Google Scholar if you have one -->
+            <a href="#" class="contact-item">
+                <i class="fas fa-graduation-cap"></i> Google Scholar
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Left Column (Main Content) -->
+        <main>
+            <!-- Professional Summary -->
+            <section>
+                <h2 class="section-title"><i class="fas fa-user-tie"></i> Executive Summary</h2>
+                <ul class="summary-list">
+                    <li><strong>Enterprise AI Strategy:</strong> Led design and execution of GenAI and agentic AI platforms, aligning AI capabilities with enterprise business objectives.</li>
+                    <li><strong>Generative AI Innovation:</strong> Spearheaded AI-driven product development incorporating LLMs and AI agents into data ecosystems.</li>
+                    <li><strong>Cross-Functional Leadership:</strong> Partnered with senior executives, legal, and compliance teams to establish AI governance frameworks.</li>
+                    <li><strong>Data Science Expertise:</strong> Applied machine learning, predictive modeling, and analytics to optimize commercial and medical strategies.</li>
+                </ul>
+            </section>
+
+            <!-- Experience -->
+            <section>
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+
+                <!-- AstraZeneca -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Director of AI and Data Science</div>
+                            <div class="company">AstraZeneca</div>
+                        </div>
+                        <div class="date">Oct 2023 - Present</div>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li><strong>Strategic Leadership:</strong> Directed the design of a multi-agent AI platform across oncology and specialty care.</li>
+                            <li><strong>Platform Development:</strong> Architected a compliant agentic AI framework leveraging knowledge graphs and RAG on enterprise healthcare data.</li>
+                            <li><strong>Governance:</strong> Partnered with legal and compliance to establish enterprise-wide governance for responsible AI deployment.</li>
+                            <li><strong>Team Building:</strong> Built and scaled global teams of data scientists and ML engineers to deliver regulated AI products.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Alibaba Cloud -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Sr. Director of Digital Health and Life Science</div>
+                            <div class="company">Alibaba Cloud</div>
+                        </div>
+                        <div class="date">Sept 2021 - June 2023</div>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Directed strategic initiatives to build large-scale AI-driven data platforms and ML models improving patient outcomes.</li>
+                            <li>Designed a federated learning platform for Roche China to securely aggregate data from multiple hospitals.</li>
+                            <li>Led development of AI-powered Clinical Decision Support Systems (CDSS) embedded into EHRs across 300+ hospitals.</li>
+                            <li>Directed research on large-scale biomedical language models trained on genomic and proteomic sequence data.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Microsoft -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Director of AI for Health</div>
+                            <div class="company">Microsoft</div>
+                        </div>
+                        <div class="date">Jan 2020 - Sept 2021</div>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Designed and deployed a secure, scalable Azure-based data platform supporting healthcare and nonprofit sectors.</li>
+                            <li>Developed ML models for COVID-19 diagnostic risk and cancer detection pipelines using deep learning.</li>
+                            <li>Co-developed a computer vision-based AI model to predict leprosy risk (Novartis Foundation).</li>
+                            <li>Led design of motion-capture AI system for infant brain development analysis using Azure Kinect.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HCSC -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Sr. Director of Data Science</div>
+                            <div class="company">Health Care Services Corporation (BCBS)</div>
+                        </div>
+                        <div class="date">Jul 2016 - Dec 2019</div>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Developed quality measurement frameworks using claims/EHR data to improve clinical operations.</li>
+                            <li>Built ML-driven models for risk adjustment, disease segmentation, and provider classification (PANDA).</li>
+                            <li>Created BI tools for visualizing provider networks to aid in contracting and optimization decisions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Previous Roles Summary -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Statistician III</div>
+                            <div class="company">NORC at The University of Chicago</div>
+                        </div>
+                        <div class="date">Nov 2014 - Jul 2016</div>
+                    </div>
+                    <div class="job-details">
+                        Led data delivery pipelines and conducted disclosure risk assessments for Medicare/Medicaid data. Winner of the 2016 Health Datapalooza Data Challenge.
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Biostatistician</div>
+                            <div class="company">National Center for Primary Care</div>
+                        </div>
+                        <div class="date">Jun 2011 - Nov 2014</div>
+                    </div>
+                    <div class="job-details">
+                        Conducted social network analysis on breast cancer networks and developed medical decision-making models using Monte Carlo simulations.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications -->
+            <section>
+                <h2 class="section-title"><i class="fas fa-book"></i> Selected Publications</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">Select research from over 30 peer-reviewed publications.</p>
+                <div class="publications-container">
+                    <div class="pub-item">1. Xin Hou, Shun Zhang, et al. Using artificial intelligence to document the hidden RNA virosphere, <em>Cell</em>, Oct, 2024.</div>
+                    <div class="pub-item">2. Yong He, Shun Zhang, et al. KG-MTT-BERT: Knowledge Graph Enhanced BERT for Multi-Type Medical Text Classification, <em>arXiv</em>, 2022.</div>
+                    <div class="pub-item">3. Yixi Xu, Shun Zhang, et al. Reimagining leprosy elimination with AI analysis... <em>The Lancet Regional Health-Americas</em>, 2022.</div>
+                    <div class="pub-item">4. Shun Zhang, et al. Adherence to highly active antiretroviral therapy impact on clinical and economic outcomes... <em>AIDS Care</em>, 2015.</div>
+                    <div class="pub-item">5. Shun Zhang, et al. The Potential for Elimination of Racial-Ethnic Disparities in HIV Treatment... <em>PLOS One</em>, 2014.</div>
+                    <div class="pub-item">6. Shun Zhang, et al. Disparities in Antiretroviral treatment among Medicaid HIV-infected pregnant women, <em>American Journal of Public Health</em>, 2013.</div>
+                    <div class="pub-item">7. Shun Zhang, et al. Racial disparities in economic and clinical outcomes of pregnancy... <em>Maternal and Child Health Journal</em>, 2012.</div>
+                    <div class="pub-item">8. Dominic Mack, Shun Zhang, et al. Disparities in primary care Electronic Health Record (EHR) adoption rates... <em>Journal of health care for the poor and underserved</em>, 2016.</div>
+                    <div class="pub-item">9. RS Shim, Shun Zhang, et al. Predictors of Mental Health Treatment Seeking... <em>Community Mental Health Journal</em>, 2017.</div>
+                    <div class="pub-item">10. George Rust, Shun Zhang, et al. Counties eliminating racial disparities in colorectal cancer mortality, <em>Cancer</em>, 2016.</div>
+                    <div class="pub-item">11. George Rust, Shun Zhang, et al. Paths to Health Equity - Local Area Variation in Progress Toward Eliminating Breast Cancer Mortality Disparities, <em>Cancer</em>, 2015.</div>
+                    <div class="pub-item">12. George Rust, Shun Zhang, et al. Potential Savings from Increasing Adherence to Inhaled Corticosteroid Therapy... <em>The American Journal of Managed Care</em>, 2015.</div>
+                    <div class="pub-item">13. Abara, Winston E., Shun Zhang, et al. The Influence of Race and Comorbidity on the Timely Initiation of Antiretroviral Therapy... <em>American Journal of Public Health</em>, 2014.</div>
+                    <div class="pub-item">14. George Rust, Shun Zhang, et al. Timing of Emergency Department Visits for Childhood Asthma after Initial Inhaled Corticosteroid Use. <em>Population Health Management</em>, 2014.</div>
+                    <div class="pub-item">15. Khusdeep Malhotra, Shun Zhang, et al. Geographic and Racial Variation in Asthma Prevalence and Emergency Department Use among Medicaid-Enrolled Children. <em>Journal of Asthma</em>, 2014.</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside>
+            <!-- Education -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Education</h3>
+                <div class="education-item">
+                    <div class="degree">Summer Courses</div>
+                    <div class="school">MIT (2014)</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Master of Public Health (Biostatistics)</div>
+                    <div class="school">Univ. of North Texas Health Science Center</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">MBBS</div>
+                    <div class="school">Anhui Medical University</div>
+                </div>
+            </div>
+
+            <!-- Skills & Certs -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Certifications</h3>
+                <div class="skill-tag">Azure Data Fundamentals</div>
+                <div class="skill-tag">Azure AI Fundamentals</div>
+                <div class="skill-tag">Machine Learning (Coursera)</div>
+                <div class="skill-tag">Deep Learning (Coursera)</div>
+                <div class="skill-tag">Certified Base Programmer SAS 9</div>
+                <div class="skill-tag">Certified Advanced Programmer SAS 9</div>
+                <div class="skill-tag">Certified in Public Health</div>
+            </div>
+
+            <!-- Awards -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Honors & Awards</h3>
+                <div class="award-item">
+                    <div class="degree">Digital Edge 50 Award</div>
+                    <div class="school">CIO Magazine (2018)</div>
+                </div>
+                <div class="award-item">
+                    <div class="degree">First Prize Winner</div>
+                    <div class="school">Health Datapalooza Data Challenge (2016)</div>
+                </div>
+                <div class="award-item">
+                    <div class="degree">Outstanding Employee</div>
+                    <div class="school">HCSC (2016)</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Shun Zhang. All rights reserved. <br>Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
