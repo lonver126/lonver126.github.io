@@ -481,11 +481,10 @@
     <!-- Hero Section -->
     <header>
         <div class="lang-switch-container">
-            <button class="lang-btn" onclick="toggleLanguage()">
-                <span class="lang-en">中文 / Chinese</span>
-                <span class="lang-zh">English</span>
-            </button>
-        </div>
+                <button id="lang-btn" class="lang-btn" aria-label="Toggle language" type="button">
+                    <span class="lang-toggle">中文</span>
+                </button>
+            </div>
 
         <div class="header-content">
             <!-- 
@@ -770,7 +769,7 @@
                                     <span class="lang-zh">统计学分析师 III</span>
                                 </span>
                                 <span class="company">
-                                    <span class="lang-en">NORC at The University of Chicago</Thead></span>
+                                    <span class="lang-en">NORC at The University of Chicago</span>
                                     <span class="lang-zh">芝加哥大学NORC中心</span>
                                 </span>
                             </div>
@@ -989,32 +988,50 @@
             }
         }
 
-        // 2. Language Switcher Function
-        let currentLang = 'en';
+        // 2. Language Switcher: persistent, accessible, and initialized on load
+        (function() {
+            const LANG_KEY = 'site_lang';
+            const DEFAULT_LANG = 'en';
+            const btn = document.getElementById('lang-btn');
 
-        function toggleLanguage() {
-            // Toggle state
-            currentLang = currentLang === 'en' ? 'zh' : 'en';
-            
-            // Get all language elements
-            const enElements = document.querySelectorAll('.lang-en');
-            const zhElements = document.querySelectorAll('.lang-zh');
+            function applyLang(lang) {
+                const enElements = document.querySelectorAll('.lang-en');
+                const zhElements = document.querySelectorAll('.lang-zh');
 
-            // Toggle visibility based on currentLang
-            if (currentLang === 'zh') {
-                enElements.forEach(el => el.style.display = 'none');
-                zhElements.forEach(el => el.style.display = 'inline'); // or block, but inline is safer for spans
-            } else {
-                enElements.forEach(el => el.style.display = 'inline');
-                zhElements.forEach(el => el.style.display = 'none');
+                if (lang === 'zh') {
+                    enElements.forEach(el => el.style.display = 'none');
+                    zhElements.forEach(el => el.style.display = 'inline');
+                } else {
+                    enElements.forEach(el => el.style.display = 'inline');
+                    zhElements.forEach(el => el.style.display = 'none');
+                }
+
+                // Update toggle button label to show the *other* language the user can switch to
+                if (btn) {
+                    btn.setAttribute('aria-pressed', String(lang === 'zh'));
+                    btn.querySelector('.lang-toggle').textContent = (lang === 'en') ? '中文' : 'English';
+                }
+
+                localStorage.setItem(LANG_KEY, lang);
             }
-        }
 
-        // Ensure correct initial state on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const zhElements = document.querySelectorAll('.lang-zh');
-            zhElements.forEach(el => el.style.display = 'none');
-        });
+            function toggleLanguage() {
+                const current = localStorage.getItem(LANG_KEY) || DEFAULT_LANG;
+                const next = current === 'en' ? 'zh' : 'en';
+                applyLang(next);
+            }
+
+            // Wire up button
+            if (btn) {
+                btn.addEventListener('click', toggleLanguage);
+            }
+
+            // Initialize on DOM ready
+            document.addEventListener('DOMContentLoaded', () => {
+                const saved = localStorage.getItem(LANG_KEY) || DEFAULT_LANG;
+                applyLang(saved);
+            });
+        })();
     </script>
 </body>
 </html>
