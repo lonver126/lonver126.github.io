@@ -244,15 +244,16 @@
 
         .section-body {
             transition: opacity 0.3s ease, max-height 0.3s ease;
-            overflow: hidden;
+            overflow: visible;
             opacity: 1;
-            max-height: 5000px; /* Arbitrary large height for transition */
+            max-height: none; /* Allow full height */
         }
 
         .collapsed .section-body {
             opacity: 0;
             max-height: 0;
             margin: 0; /* Remove margins when collapsed */
+            overflow: hidden;
         }
 
         /* --- Summary --- */
@@ -321,6 +322,7 @@
         .job-content {
             flex: 1;
             min-width: 0;
+            overflow: visible;
         }
 
         .job-header {
@@ -515,7 +517,28 @@
             /* Make contact buttons full width on very small screens */
             .contact-item { width: 100%; justify-content: center; }
             
-            section { padding: 1.5rem; }
+            section { padding: 1rem; }
+            
+            .job {
+                padding-left: 1rem;
+            }
+            
+            .company-logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .job-title {
+                font-size: 1rem;
+            }
+            
+            .job-details {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
         }
 
         /* --- Print Styles (For PDF Generation) --- */
