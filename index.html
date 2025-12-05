@@ -14,9 +14,10 @@
 
     <style>
         :root {
-            --primary: #0f2b46; /* Darker, more premium blue */
-            --primary-light: #1a4670;
-            --accent: #00a8cc; /* Tech/Data cyan */
+            --primary: #7C2E8C; /* AstraZeneca Purple */
+            --primary-light: #9B4BA8;
+            --accent: #FFB81C; /* AstraZeneca Yellow */
+            --accent-secondary: #00A9CE; /* AstraZeneca Cyan */
             --bg-light: #f8f9fa;
             --text-dark: #1f2937;
             --text-light: #64748b;
@@ -58,7 +59,7 @@
 
         /* --- Header / Hero Section --- */
         header {
-            background: linear-gradient(135deg, var(--primary), #004e82);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--accent-secondary));
             color: var(--white);
             padding: 4rem 2rem;
             position: relative;
@@ -227,6 +228,7 @@
 
         .section-title i {
             color: var(--accent);
+            filter: drop-shadow(0 1px 2px rgba(255, 184, 28, 0.3));
         }
 
         .toggle-icon {
@@ -272,35 +274,56 @@
             left: 0;
             top: 4px;
             font-size: 0.9rem;
+            filter: drop-shadow(0 1px 2px rgba(255, 184, 28, 0.4));
         }
 
         /* --- Experience Timeline --- */
         .job {
             margin-bottom: 2.5rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--border);
+            padding-left: 5rem;
+            border-left: 3px solid var(--primary);
             position: relative;
         }
 
         .job::before {
             content: "";
             position: absolute;
-            left: -6px; /* Center on line */
-            top: 6px;
-            width: 10px;
-            height: 10px;
-            background: var(--white);
-            border: 2px solid var(--accent);
+            left: -8px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border: 3px solid var(--white);
             border-radius: 50%;
+            box-shadow: 0 0 0 2px var(--primary);
         }
 
         .job:last-child {
             margin-bottom: 0;
-            border-left-color: transparent;
+            border-left-color: var(--primary);
+        }
+
+        .company-logo {
+            position: absolute;
+            left: -4.2rem;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border);
         }
 
         .job-header {
             margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .job-title {
@@ -371,6 +394,9 @@
         .skill-tag:hover {
             border-color: var(--accent);
             color: var(--primary);
+            background: linear-gradient(135deg, rgba(255, 184, 28, 0.1), rgba(124, 46, 140, 0.1));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(124, 46, 140, 0.15);
         }
 
         .education-item, .award-item {
@@ -435,6 +461,17 @@
                 grid-template-columns: 1fr;
                 margin-top: 0;
                 padding: 1.5rem;
+            }
+
+            .job {
+                padding-left: 1.5rem;
+            }
+
+            .company-logo {
+                position: static;
+                margin-bottom: 1rem;
+                width: 50px;
+                height: 50px;
             }
 
             header { padding: 3rem 1.5rem; }
@@ -582,6 +619,7 @@
                 <div class="section-body">
                     <!-- AstraZeneca -->
                     <div class="job">
+                        <img src="https://logo.clearbit.com/astrazeneca.com" alt="AstraZeneca Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -626,6 +664,7 @@
 
                     <!-- Alibaba Cloud -->
                     <div class="job">
+                        <img src="https://logo.clearbit.com/alibabacloud.com" alt="Alibaba Cloud Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -680,6 +719,7 @@
 
                     <!-- Microsoft AI for Good Lab -->
                     <div class="job">
+                        <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -724,6 +764,7 @@
 
                     <!-- HCSC -->
                     <div class="job">
+                        <img src="https://logo.clearbit.com/hcsc.com" alt="Health Care Service Corporation Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -763,6 +804,7 @@
 
                     <!-- NORC -->
                    <div class="job">
+                        <img src="https://logo.clearbit.com/uchicago.edu" alt="University of Chicago Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -804,6 +846,7 @@
  
                     <!-- NCPC -->
                     <div class="job">
+                        <img src="https://logo.clearbit.com/msm.edu" alt="Morehouse School of Medicine Logo" class="company-logo">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
