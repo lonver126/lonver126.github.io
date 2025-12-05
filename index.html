@@ -280,9 +280,11 @@
         /* --- Experience Timeline --- */
         .job {
             margin-bottom: 2.5rem;
-            padding-left: 5rem;
+            padding-left: 1.5rem;
             border-left: 3px solid var(--primary);
             position: relative;
+            display: flex;
+            gap: 1.5rem;
         }
 
         .job::before {
@@ -304,17 +306,21 @@
         }
 
         .company-logo {
-            position: absolute;
-            left: -4.2rem;
-            top: 0;
-            width: 60px;
-            height: 60px;
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
             background: var(--white);
             border-radius: 8px;
-            padding: 8px;
+            padding: 10px;
             box-shadow: var(--shadow-md);
             border: 2px solid var(--border);
+            display: block;
+        }
+        
+        .job-content {
+            flex: 1;
+            min-width: 0;
         }
 
         .job-header {
@@ -465,13 +471,13 @@
 
             .job {
                 padding-left: 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .company-logo {
-                position: static;
-                margin-bottom: 1rem;
-                width: 50px;
-                height: 50px;
+                width: 60px;
+                height: 60px;
             }
 
             header { padding: 3rem 1.5rem; }
@@ -620,22 +626,23 @@
                     <!-- AstraZeneca -->
                     <div class="job">
                         <img src="https://logo.clearbit.com/astrazeneca.com" alt="AstraZeneca Logo" class="company-logo">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en">Director of AI and Data Science</span>
-                                    <span class="lang-zh">AI与数据科学总监</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">AstraZeneca</span>
-                                    <span class="lang-zh">阿斯利康 (AstraZeneca)</span>
-                                </span>
+                        <div class="job-content">
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title">
+                                        <span class="lang-en">Director of AI and Data Science</span>
+                                        <span class="lang-zh">AI与数据科学总监</span>
+                                    </span>
+                                    <span class="company">
+                                        <span class="lang-en">AstraZeneca</span>
+                                        <span class="lang-zh">阿斯利康 (AstraZeneca)</span>
+                                    </span>
+                                </div>
+                                <div class="date">
+                                    <span class="lang-en">Oct 2023 - Present</span>
+                                    <span class="lang-zh">2023年10月 - 至今</span>
+                                </div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">Oct 2023 - Present</span>
-                                <span class="lang-zh">2023年10月 - 至今</span>
-                            </div>
-                        </div>
                         <div class="job-details">
                             <ul>
                                 <li>
@@ -660,11 +667,13 @@
                                 </li>
                             </ul>
                         </div>
+                        </div>
                     </div>
 
                     <!-- Alibaba Cloud -->
                     <div class="job">
                         <img src="https://logo.clearbit.com/alibabacloud.com" alt="Alibaba Cloud Logo" class="company-logo">
+                        <div class="job-content">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -715,11 +724,13 @@
                                 </li>
                             </ul>
                         </div>
+                        </div>
                     </div>
 
                     <!-- Microsoft AI for Good Lab -->
                     <div class="job">
                         <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="company-logo">
+                        <div class="job-content">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -760,11 +771,13 @@
                                 </li>
                             </ul>
                         </div>
+                        </div>
                     </div>
 
                     <!-- HCSC -->
                     <div class="job">
                         <img src="https://logo.clearbit.com/hcsc.com" alt="Health Care Service Corporation Logo" class="company-logo">
+                        <div class="job-content">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -800,11 +813,13 @@
                                 </li>
                             </ul>
                         </div>
+                        </div>
                     </div>
 
                     <!-- NORC -->
                    <div class="job">
-                        <img src="https://logo.clearbit.com/uchicago.edu" alt="University of Chicago Logo" class="company-logo">
+                        <img src="https://logo.clearbit.com/norc.org" alt="NORC Logo" class="company-logo">
+                        <div class="job-content">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -842,11 +857,13 @@
                                 </li>
                             </ul>
                          </div>
+                         </div>
                     </div>
  
                     <!-- NCPC -->
                     <div class="job">
                         <img src="https://logo.clearbit.com/msm.edu" alt="Morehouse School of Medicine Logo" class="company-logo">
+                        <div class="job-content">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">
@@ -881,6 +898,7 @@
                                     <span class="lang-zh">使用 TreeAge 构建系统化的医学决策框架，支持循证临床与政策决策。建立 Markov 模型、蒙特卡洛模拟及决策树用于评估疾病管理策略并优化长期健康结局。完成儿童哮喘长期控制药物依从性的全面成本效果分析（CEA），评估经济影响与临床效益。</span>
                                 </li>
                             </ul>
+                         </div>
                          </div>
                     </div>
                 </div>
@@ -918,7 +936,8 @@
                     <div class="pub-item">14. George Rust, Shun Zhang, et al. Timing of Emergency Department Visits for Childhood Asthma after Initial Inhaled Corticosteroid Use. <em>Population Health Management</em>, 2014.</div>
                     <div class="pub-item">15. Khusdeep Malhotra, Shun Zhang, et al. Geographic and Racial Variation in Asthma Prevalence and Emergency Department Use among Medicaid-Enrolled Children. <em>Journal of Asthma</em>, 2014.</div>
                     <div class="pub-item">16. Ruth S. Shim, Benjamin G. Druss, Shun Zhang, Giyeon Kim, Adesoji Oderinde, Sosunmolu Shoyinka, George Rust.Emergency Department Utilization among Medicaid Beneficiaries with Schizophrenia and Diabetes: The Consequences of Increasing Medical Complexity <em>Schizophrenia Research</em>, Nov 2013.</div>
-                    <div class="pub-item">17. Fang Fang Zhang, Roberto Cardarelli, Joan Carroll, Shun Zhang, Kimberly G. Fulda, Karina Gonzalez,Jamboor K. Vishwanatha, Alfredo Morabia, Regina M. Santella. Physical activity and global genomic DNA methylation in a cancer-free population <em>Epigenetics</em>, March 2011.</div>                    </div>
+                    <div class="pub-item">17. Fang Fang Zhang, Roberto Cardarelli, Joan Carroll, Shun Zhang, Kimberly G. Fulda, Karina Gonzalez,Jamboor K. Vishwanatha, Alfredo Morabia, Regina M. Santella. Physical activity and global genomic DNA methylation in a cancer-free population <em>Epigenetics</em>, March 2011.</div>
+                    </div>
                 </div>
             </section>
         </main>
