@@ -407,11 +407,54 @@
             box-shadow: 0 4px 8px rgba(124, 46, 140, 0.15);
         }
 
-        .education-item, .award-item {
+        .education-item {
             margin-bottom: 1.5rem;
             display: flex;
             gap: 1rem;
             align-items: center;
+        }
+        
+        .award-item {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .award-item .degree,
+        .award-item .school {
+            text-align: center;
+        }
+        
+        .award-photo {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 8px;
+            margin: 0.8rem auto;
+            display: block;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .award-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(124, 46, 140, 0.2);
+        }
+        
+        .award-link {
+            display: block;
+            margin: 0.5rem 0;
+            text-align: center;
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .award-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
         }
         
         .education-logo {
@@ -1072,6 +1115,12 @@
                             <span class="lang-zh">一等奖获得者</span>
                         </div>
                         <div class="school">2016 Health Datapalooza Data Challenge</div>
+                        <a href="https://www.norc.org/research/library/team-from-norc-takes-top-health-analytics-prize-at-health-datapa.html" target="_blank" class="award-link">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span class="lang-en">Read More</span>
+                            <span class="lang-zh">了解更多</span>
+                        </a>
+                        <img src="joebiden.jpeg" alt="2016 Health Datapalooza Award Ceremony" class="award-photo">
                     </div>
                     <div class="award-item">
                         <div class="degree">Delta Omega Honor Society</div>
