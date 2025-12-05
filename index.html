@@ -406,8 +406,31 @@
         }
 
         .education-item, .award-item {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
+        
+        .education-logo {
+            flex-shrink: 0;
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            object-position: center;
+            background: var(--white);
+            border-radius: 6px;
+            padding: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: block;
+        }
+        
+        .education-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
         .degree { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
         .school { font-size: 0.9rem; color: var(--text-light); margin-top: 2px; }
 
@@ -955,27 +978,36 @@
                 </h3>
                 <div class="section-body">
                     <div class="education-item">
-                        <div class="degree">
-                            <span class="lang-en">Summer Courses</span>
-                            <span class="lang-zh">暑期课程</span>
-                        </div>
-                        <div class="school">MIT (2014)</div>
-                    </div>
-                    <div class="education-item">
-                        <div class="degree">
-                            <span class="lang-en">Master of Public Health (Biostatistics)</span>
-                            <span class="lang-zh">生物统计学硕士</span>
-                        </div>
-                        <div class="school">
-                            <span class="lang-en">Univ. of North Texas Health Science Center</span>
-                            <span class="lang-zh">北得克萨斯大学健康科学中心</span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/200px-MIT_logo.svg.png" alt="MIT Logo" class="education-logo">
+                        <div class="education-content">
+                            <div class="degree">
+                                <span class="lang-en">Summer Courses</span>
+                                <span class="lang-zh">暑期课程</span>
+                            </div>
+                            <div class="school">MIT (2014)</div>
                         </div>
                     </div>
                     <div class="education-item">
-                        <div class="degree">MBBS</div>
-                        <div class="school">
-                            <span class="lang-en">Anhui Medical University</span>
-                            <span class="lang-zh">安徽医科大学</span>
+                        <img src="https://logo.clearbit.com/unthsc.edu" alt="UNT Health Science Center Logo" class="education-logo">
+                        <div class="education-content">
+                            <div class="degree">
+                                <span class="lang-en">Master of Public Health (Biostatistics)</span>
+                                <span class="lang-zh">生物统计学硕士</span>
+                            </div>
+                            <div class="school">
+                                <span class="lang-en">Univ. of North Texas Health Science Center</span>
+                                <span class="lang-zh">北得克萨斯大学健康科学中心</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Anhui_Medical_University_logo.svg/200px-Anhui_Medical_University_logo.svg.png" alt="Anhui Medical University Logo" class="education-logo">
+                        <div class="education-content">
+                            <div class="degree">MBBS</div>
+                            <div class="school">
+                                <span class="lang-en">Anhui Medical University</span>
+                                <span class="lang-zh">安徽医科大学</span>
+                            </div>
                         </div>
                     </div>
                 </div>
