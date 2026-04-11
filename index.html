@@ -5,630 +5,510 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shun Zhang - Director of AI & Data Science</title>
     <meta name="description" content="Portfolio and Resume of Shun Zhang, Director of AI and Data Science specializing in Generative AI, Digital Health, and Enterprise Strategy.">
-    
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
+        /* ===== CSS VARIABLES ===== */
         :root {
-            --primary: #7C2E8C; /* AstraZeneca Purple */
-            --primary-light: #9B4BA8;
-            --accent: #FFB81C; /* AstraZeneca Yellow */
-            --accent-secondary: #00A9CE; /* AstraZeneca Cyan */
-            --bg-light: #f8f9fa;
-            --text-dark: #1f2937;
+            --primary: #0C2340;
+            --primary-light: #1a3a5c;
+            --primary-rgb: 12,35,64;
+            --accent: #F58426;
+            --accent-light: #ff9b45;
+            --accent-rgb: 245,132,38;
+            --accent-secondary: #00A9CE;
+            --accent-sec-rgb: 0,169,206;
+            --bg: #fdfdfd;
+            --bg-card: #ffffff;
+            --text: #1f2937;
             --text-light: #64748b;
             --white: #ffffff;
             --border: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-sm: 0 1px 3px rgba(var(--primary-rgb),0.08);
+            --shadow-md: 0 4px 12px rgba(var(--primary-rgb),0.1);
+            --shadow-lg: 0 10px 30px rgba(var(--primary-rgb),0.12);
+            --radius: 14px;
+            --nav-height: 56px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* ===== DARK MODE ===== */
+        [data-theme="dark"] {
+            --primary: #a8c4e0;
+            --primary-light: #7eaad4;
+            --bg: #0f1724;
+            --bg-card: #182133;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --white: #182133;
+            --border: #2d3a4f;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
         }
+        [data-theme="dark"] header { background: #0a1628; }
+        [data-theme="dark"] .sticky-nav { background: rgba(10,22,40,0.95); }
+        [data-theme="dark"] .stats-section { background: #111d30; }
+        [data-theme="dark"] .job::before { border-color: var(--bg-card); }
+        [data-theme="dark"] header::after { background: var(--bg); }
+        [data-theme="dark"] footer { background: #0a1628; }
+        [data-theme="dark"] .contact-item:hover { color: #fff; }
+        [data-theme="dark"] .pub-item em { color: var(--accent); }
 
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Rubik', sans-serif;
             line-height: 1.7;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
+            color: var(--text);
+            background: var(--bg);
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
         }
+        h1,h2,h3 { font-family: 'Rubik', sans-serif; color: var(--primary); line-height: 1.3; }
+        a { text-decoration: none; color: var(--primary-light); transition: all 0.25s; }
+        a:hover { color: var(--accent); }
 
-        h1, h2, h3 {
-            font-family: 'Merriweather', serif;
-            color: var(--primary);
-            line-height: 1.3;
+        /* ===== STICKY NAV ===== */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(12,35,64,0.95); backdrop-filter: blur(10px);
+            transform: translateY(-100%); transition: transform 0.35s ease;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
         }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-light);
-            transition: all 0.2s ease;
+        .sticky-nav.visible { transform: translateY(0); }
+        .sticky-nav .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 1.5rem; height: var(--nav-height);
         }
-
-        a:hover {
-            color: var(--accent);
+        .sticky-nav .nav-brand {
+            color: #fff; font-weight: 700; font-size: 1.05rem;
+            white-space: nowrap;
         }
+        .sticky-nav .nav-links {
+            display: flex; gap: 0.25rem; list-style: none;
+        }
+        .sticky-nav .nav-links a {
+            color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 500;
+            padding: 0.4rem 0.75rem; border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sticky-nav .nav-links a:hover,
+        .sticky-nav .nav-links a.active {
+            color: #fff; background: rgba(245,132,38,0.2);
+        }
+        .sticky-nav .nav-links a.active {
+            background: var(--accent); color: #fff;
+        }
+        .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+        /* Hamburger */
+        .hamburger {
+            display: none; background: none; border: none; cursor: pointer; padding: 0.5rem;
+            flex-direction: column; gap: 4px;
+        }
+        .hamburger span {
+            display: block; width: 22px; height: 2px; background: #fff;
+            transition: all 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
 
-        /* --- Header / Hero Section --- */
+        /* ===== HEADER / HERO ===== */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--accent-secondary));
-            color: var(--white);
-            padding: 4rem 2rem;
-            position: relative;
-            overflow: hidden;
+            background: #0C2340; color: #fff;
+            padding: 4.5rem 2rem 7rem; position: relative; overflow: hidden; text-align: center;
         }
-
-        /* Subtle texture overlay for header */
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
-            pointer-events: none;
+        header::after {
+            content: ""; position: absolute; bottom: -1px; left: -5%; width: 110%; height: 60px;
+            background: var(--bg); border-radius: 50% 50% 0 0;
         }
-
         .header-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
+            max-width: 800px; margin: 0 auto; position: relative; z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
         }
-
-        .profile-container {
-            flex-shrink: 0;
+        /* DNA Background Canvas */
+        #dna-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
         }
-
+        /* Header controls row */
+        .header-controls {
+            position: absolute; top: 1.5rem; right: 2rem; z-index: 10;
+            display: flex; gap: 0.5rem; align-items: center;
+        }
+        .header-btn {
+            background: rgba(255,255,255,0.12); color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;
+            font-family: 'Rubik', sans-serif; font-size: 0.85rem; font-weight: 500;
+            transition: all 0.25s; backdrop-filter: blur(4px);
+        }
+        .header-btn:hover { background: var(--accent); border-color: var(--accent); }
+        .header-btn i { margin-right: 0.3rem; }
+        /* Profile */
+        .profile-container { position: relative; width: 200px; height: 200px; }
         .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            background-color: #ddd; /* Fallback color */
+            width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.2); background: #ddd;
         }
-
-        .header-text {
-            text-align: left;
+        .profile-container::after {
+            content: ''; border-radius: 50%; position: absolute; top: 0; left: 0;
+            width: 200px; height: 200px;
+            box-shadow: inset 3px 2px 1em rgba(0,0,0,0.3); pointer-events: none;
         }
-
-        header h1 {
-            color: var(--white);
-            font-size: 2.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
+        .header-text { text-align: center; }
+        header h1 { color: #fff; font-size: 2.8rem; font-weight: 700; margin-bottom: 0.3rem; }
         header .subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            opacity: 0.95;
-            margin-bottom: 1.5rem;
-            max-width: 600px;
+            font-size: 1.1rem; font-weight: 300; opacity: 0.85;
+            margin-bottom: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;
         }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
+        .contact-info { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
         .contact-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--white);
-            background: rgba(255,255,255,0.15);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
+            display: inline-flex; align-items: center; gap: 0.5rem; color: #fff;
+            background: rgba(255,255,255,0.1); padding: 0.45rem 1rem; border-radius: 50px;
+            font-size: 0.85rem; backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.12); transition: all 0.25s;
         }
-
         .contact-item:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-2px);
+            background: var(--accent); color: #fff; border-color: var(--accent);
+            transform: translateY(-2px); box-shadow: 0 4px 12px rgba(var(--accent-rgb),0.3);
         }
+        .lang-zh { display: none; }
 
-        /* --- Language Switcher --- */
-        .lang-switch-container {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-            z-index: 10;
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            background: #0C2340; position: relative; z-index: 3;
+            margin-top: -3.5rem; padding: 2rem 2rem 2.5rem;
         }
-
-        .lang-btn {
-            background: rgba(255,255,255,0.2);
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
+        .stats-grid {
+            max-width: 900px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
         }
-
-        .lang-btn:hover {
-            background: var(--white);
-            color: var(--primary);
+        .stat-card {
+            text-align: center; padding: 1.5rem 1rem;
+            background: rgba(255,255,255,0.06); border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s; cursor: default;
         }
-
-        .lang-zh {
-            display: none; /* Hidden by default */
+        .stat-card:hover {
+            background: rgba(245,132,38,0.12); border-color: rgba(245,132,38,0.3);
+            transform: translateY(-4px);
         }
+        .stat-icon { font-size: 1.8rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .stat-number {
+            font-size: 2.4rem; font-weight: 700; color: #fff;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-number .plus { font-size: 1.5rem; }
+        .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; font-weight: 500; }
 
-        /* --- Layout --- */
+        /* ===== MAIN LAYOUT ===== */
         .container {
-            max-width: 5000px;
-            margin: -3rem auto 2rem; /* Pull up over header */
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 3fr 1.1fr; /* Slightly wider sidebar */
-            gap: 2rem;
-            position: relative;
-            z-index: 2;
+            max-width: 1200px; margin: 2rem auto; padding: 0 2rem;
+            display: grid; grid-template-columns: 3fr 1.1fr; gap: 2rem;
+            position: relative; z-index: 2;
         }
 
-        /* --- Main Content Styling --- */
+        /* ===== SECTION CARDS ===== */
         section, aside .sidebar-section {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-            transition: box-shadow 0.3s ease;
+            background: var(--bg-card); padding: 2.2rem; border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); margin-bottom: 2rem;
+            transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
             border: 1px solid var(--border);
         }
+        section:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        aside .sidebar-section:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 
-        section:hover {
-            box-shadow: var(--shadow-md);
-        }
+        /* Fade-in on scroll */
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* Collapsible Headers */
+        /* Collapsible */
         .section-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 0.8rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Push icon to right */
-            gap: 0.8rem;
-            cursor: pointer; /* Indicate clickable */
-            user-select: none;
+            font-size: 1.45rem; color: var(--primary);
+            border-bottom: 2px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+            cursor: pointer; user-select: none;
         }
-        
-        .section-title-content {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
+        .section-title-content { display: flex; align-items: center; gap: 0.8rem; }
+        .section-title-content > i { color: var(--accent); }
+        .toggle-icon { font-size: 1rem; color: var(--text-light); transition: transform 0.3s; }
+        .collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section-body { transition: opacity 0.3s, max-height 0.3s; overflow: visible; opacity: 1; max-height: none; }
+        .collapsed .section-body { opacity: 0; max-height: 0; margin: 0; overflow: hidden; }
 
-        .section-title i {
-            color: var(--accent);
-            filter: drop-shadow(0 1px 2px rgba(255, 184, 28, 0.3));
-        }
-
-        .toggle-icon {
-            font-size: 1rem;
-            color: var(--text-light);
-            transition: transform 0.3s ease;
-        }
-
-        /* Collapsed State Class */
-        .collapsed .toggle-icon {
-            transform: rotate(-90deg);
-        }
-
-        .section-body {
-            transition: opacity 0.3s ease, max-height 0.3s ease;
-            overflow: visible;
-            opacity: 1;
-            max-height: none; /* Allow full height */
-        }
-
-        .collapsed .section-body {
-            opacity: 0;
-            max-height: 0;
-            margin: 0; /* Remove margins when collapsed */
-            overflow: hidden;
-        }
-
-        /* --- Summary --- */
-        .summary-list {
-            list-style: none;
-        }
-        .summary-list li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--text-dark);
-        }
+        /* Summary */
+        .summary-list { list-style: none; }
+        .summary-list li { margin-bottom: 1rem; position: relative; padding-left: 1.5rem; }
         .summary-list li::before {
-            content: "\f058"; /* FontAwesome check-circle */
-            font-family: "Font Awesome 6 Free";
-            color: var(--accent);
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 4px;
-            font-size: 0.9rem;
-            filter: drop-shadow(0 1px 2px rgba(255, 184, 28, 0.4));
+            content: "\f058"; font-family: "Font Awesome 6 Free"; color: var(--accent);
+            font-weight: 900; position: absolute; left: 0; top: 4px; font-size: 0.9rem;
         }
 
-        /* --- Experience Timeline --- */
+        /* Experience Timeline */
         .job {
-            margin-bottom: 2.5rem;
-            padding-left: 1.5rem;
-            border-left: 3px solid var(--primary);
-            position: relative;
-            display: flex;
-            gap: 1.5rem;
+            margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid var(--primary);
+            position: relative; display: flex; gap: 1.5rem;
         }
-
         .job::before {
-            content: "";
-            position: absolute;
-            left: -8px;
-            top: 8px;
-            width: 14px;
-            height: 14px;
-            background: var(--accent);
-            border: 3px solid var(--white);
-            border-radius: 50%;
+            content: ""; position: absolute; left: -8px; top: 8px;
+            width: 14px; height: 14px; background: var(--accent);
+            border: 3px solid var(--white); border-radius: 50%;
             box-shadow: 0 0 0 2px var(--primary);
         }
-
-        .job:last-child {
-            margin-bottom: 0;
-            border-left-color: var(--primary);
-        }
-
+        .job:last-child { margin-bottom: 0; }
         .company-logo {
-            flex-shrink: 0;
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            background: var(--white);
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--border);
-            display: block;
+            flex-shrink: 0; width: 70px; height: 70px; object-fit: contain;
+            background: #fff; border-radius: 10px; padding: 10px;
+            box-shadow: var(--shadow-sm); border: 2px solid var(--border);
+            transition: border-color 0.25s, box-shadow 0.25s;
         }
-        
-        .job-content {
-            flex: 1;
-            min-width: 0;
-            overflow: visible;
-        }
-
-        .job-header {
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .job-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-            display: block;
-        }
-
-        .company {
-            font-weight: 600;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
+        .company-logo:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+        .job-content { flex: 1; min-width: 0; }
+        .job-header { margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; }
+        .job-title { font-weight: 700; font-size: 1.15rem; color: var(--primary); display: block; }
+        .company { font-weight: 500; color: var(--text-light); font-size: 1rem; }
         .date {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            font-weight: 500;
-            background: var(--bg-light);
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-top: 4px;
+            font-size: 0.82rem; color: var(--text-light); font-weight: 500;
+            background: var(--bg); display: inline-block; padding: 3px 10px;
+            border-radius: 6px; border: 1px solid var(--border);
         }
+        .job-details { font-size: 0.95rem; margin-top: 0.8rem; }
+        .job-details ul { padding-left: 1rem; }
+        .job-details li { margin-bottom: 0.5rem; color: var(--text); }
 
-        .job-details {
-            font-size: 0.95rem;
-            margin-top: 0.8rem;
-        }
-
-        .job-details ul {
-            padding-left: 1rem;
-        }
-        
-        .job-details li {
-            margin-bottom: 0.5rem;
-            color: #444;
-        }
-
-        /* --- Sidebar Styling --- */
+        /* Sidebar */
         .sidebar-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 1.1rem; font-weight: 700; color: var(--primary);
+            margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
-
         .skill-tag {
-            display: inline-block;
-            background: var(--white);
-            color: var(--text-dark);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin: 0 0.3rem 0.5rem 0;
-            border: 1px solid var(--border);
-            font-weight: 500;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: inline-block; background: var(--bg); color: var(--text);
+            padding: 0.4rem 0.85rem; border-radius: 8px; font-size: 0.8rem;
+            margin: 0 0.3rem 0.5rem 0; border: 1px solid var(--border); font-weight: 500;
+            transition: all 0.25s; cursor: default; position: relative;
         }
-        
         .skill-tag:hover {
-            border-color: var(--accent);
-            color: var(--primary);
-            background: linear-gradient(135deg, rgba(255, 184, 28, 0.1), rgba(124, 46, 140, 0.1));
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(124, 46, 140, 0.15);
+            border-color: var(--accent); color: var(--primary);
+            background: linear-gradient(135deg, rgba(var(--accent-rgb),0.1), rgba(var(--primary-rgb),0.05));
+            transform: translateY(-2px); box-shadow: 0 4px 8px rgba(var(--primary-rgb),0.1);
+        }
+        /* Tooltip for skill tags */
+        .skill-tag[data-tooltip]:hover::after {
+            content: attr(data-tooltip); position: absolute; bottom: 110%; left: 50%;
+            transform: translateX(-50%); background: var(--primary); color: #fff;
+            padding: 0.35rem 0.7rem; border-radius: 6px; font-size: 0.72rem; white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 100; pointer-events: none;
+        }
+        .skill-tag[data-tooltip]:hover::before {
+            content: ''; position: absolute; bottom: 100%; left: 50%;
+            transform: translateX(-50%); border: 5px solid transparent;
+            border-top-color: var(--primary); z-index: 100;
         }
 
-        .education-item {
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .award-item {
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .award-item .degree,
-        .award-item .school {
-            text-align: center;
-        }
-        
+        .education-item { margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; }
+        .award-item { margin-bottom: 1.5rem; text-align: center; }
         .award-photo {
-            width: 100%;
-            max-width: 280px;
-            height: auto;
-            border-radius: 8px;
-            margin: 0.8rem auto;
-            display: block;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--border);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%; max-width: 280px; height: auto; border-radius: 10px;
+            margin: 0.8rem auto; display: block; box-shadow: var(--shadow-md);
+            border: 2px solid var(--border); cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
         }
-        
-        .award-photo:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(124, 46, 140, 0.2);
-        }
-        
+        .award-photo:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
         .award-link {
-            display: block;
-            margin: 0.5rem 0;
-            text-align: center;
-            color: var(--primary);
-            font-size: 0.85rem;
-            text-decoration: none;
-            font-weight: 600;
+            display: block; margin: 0.5rem 0; text-align: center; color: var(--accent);
+            font-size: 0.85rem; font-weight: 600; transition: color 0.25s;
         }
-        
-        .award-link:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-        
+        .award-link:hover { color: var(--primary); text-decoration: underline; }
         .education-logo {
-            flex-shrink: 0;
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-            object-position: center;
-            background: var(--white);
-            border-radius: 6px;
-            padding: 8px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            display: block;
+            flex-shrink: 0; width: 55px; height: 55px; object-fit: contain;
+            background: #fff; border-radius: 8px; padding: 8px;
+            box-shadow: var(--shadow-sm); border: 1px solid var(--border);
         }
-        
-        .education-content {
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .degree { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
+        .education-content { flex: 1; min-width: 0; }
+        .degree { font-weight: 700; font-size: 0.95rem; color: var(--text); }
         .school { font-size: 0.9rem; color: var(--text-light); margin-top: 2px; }
 
-        /* --- Publications Scrollbox --- */
+        /* Publications */
         .publications-container {
-            max-height: 350px;
-            overflow-y: auto;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            background-color: #fafafa;
-            border-radius: 8px;
+            max-height: 350px; overflow-y: auto; padding: 1rem;
+            border: 1px solid var(--border); background: var(--bg); border-radius: 10px;
         }
-        
+        .publications-container::-webkit-scrollbar { width: 6px; }
+        .publications-container::-webkit-scrollbar-track { background: var(--bg); border-radius: 3px; }
+        .publications-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
         .pub-item {
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-            line-height: 1.5;
+            font-size: 0.9rem; margin-bottom: 1rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border); line-height: 1.5;
         }
-        .pub-item em { color: var(--primary); font-weight: 600; }
+        .pub-item em { color: var(--accent); font-weight: 600; }
         .pub-item:last-child { border-bottom: none; margin-bottom: 0; }
 
-        /* --- Footer --- */
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000;
+            align-items: center; justify-content: center; cursor: pointer;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: 90vw; max-height: 85vh; border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute; top: 1.5rem; right: 2rem;
+            color: #fff; font-size: 2rem; cursor: pointer;
+            background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
+            width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--accent); color: #fff; border: none; cursor: pointer;
+            font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 14px rgba(var(--accent-rgb),0.4);
+            opacity: 0; transform: translateY(20px); pointer-events: none;
+            transition: all 0.3s;
+        }
+        .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(var(--accent-rgb),0.5); }
+
+        /* ===== FOOTER ===== */
         footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            background: var(--white);
-            border-top: 1px solid var(--border);
+            text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem;
+            background: #0C2340; color: rgba(255,255,255,0.5);
+        }
+        footer a { color: var(--accent); }
+
+        /* ===== RESPONSIVE: TABLET (768-1024) ===== */
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(4,1fr); gap: 1rem; }
+            .stat-number { font-size: 2rem; }
+            .container { grid-template-columns: 2.5fr 1fr; gap: 1.5rem; }
         }
 
-        /* --- Responsive Design (Mobile Adaptation) --- */
+        /* ===== RESPONSIVE: SMALL TABLET (<=850) ===== */
         @media (max-width: 850px) {
-            /* Stack Header */
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
+            .container { grid-template-columns: 1fr; margin-top: 1rem; padding: 1.5rem; }
+            header { padding: 3.5rem 1.5rem 6rem; }
+            header h1 { font-size: 2.2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .job { padding-left: 1.5rem; flex-direction: column; gap: 1rem; }
+            .company-logo { width: 60px; height: 60px; }
+            /* Nav hamburger */
+            .hamburger { display: flex; }
+            .sticky-nav .nav-links {
+                display: none; position: absolute; top: var(--nav-height); left: 0; right: 0;
+                background: rgba(12,35,64,0.98); flex-direction: column; padding: 0.5rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             }
-
-            .header-text { text-align: center; }
-            
-            .contact-info {
-                justify-content: center;
-            }
-            
-            .lang-switch-container {
-                top: 1rem;
-                right: 1rem;
-            }
-
-            /* Stack Main Grid */
-            .container {
-                grid-template-columns: 1fr;
-                margin-top: 0;
-                padding: 1.5rem;
-            }
-
-            .job {
-                padding-left: 1.5rem;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .company-logo {
-                width: 60px;
-                height: 60px;
-            }
-
-            header { padding: 3rem 1.5rem; }
-            header h1 { font-size: 2rem; }
+            .sticky-nav .nav-links.open { display: flex; }
+            .sticky-nav .nav-links a { padding: 0.7rem 1rem; font-size: 0.9rem; }
         }
 
+        /* ===== RESPONSIVE: PHONE (<=480) ===== */
         @media (max-width: 480px) {
-            .profile-img { width: 140px; height: 140px; }
-            header h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 1rem; }
-            
-            /* Make contact buttons full width on very small screens */
-            .contact-item { width: 100%; justify-content: center; }
-            
-            section { padding: 1rem; }
-            
-            .job {
-                padding-left: 1rem;
-            }
-            
-            .company-logo {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .job-title {
-                font-size: 1rem;
-            }
-            
-            .job-details {
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 1.2rem;
-            }
+            .profile-container, .profile-img { width: 140px; height: 140px; }
+            .profile-container::after { width: 140px; height: 140px; }
+            header h1 { font-size: 1.7rem; }
+            .subtitle { font-size: 0.9rem; }
+            .contact-item { width: 100%; justify-content: center; font-size: 0.8rem; }
+            section, aside .sidebar-section { padding: 1.2rem; }
+            .job { padding-left: 1rem; }
+            .company-logo { width: 50px; height: 50px; }
+            .job-title { font-size: 1rem; }
+            .section-title { font-size: 1.15rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .stat-number { font-size: 1.8rem; }
+            .stat-card { padding: 1rem 0.5rem; }
+            .header-controls { top: 1rem; right: 1rem; gap: 0.3rem; }
+            .header-btn { padding: 0.4rem 0.7rem; font-size: 0.75rem; }
+            .back-to-top { width: 42px; height: 42px; bottom: 1.5rem; right: 1.5rem; }
         }
 
-        /* --- Print Styles (For PDF Generation) --- */
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .fade-in { opacity: 1; transform: none; }
+            #dna-canvas { display: none; }
+        }
+
+        /* ===== PRINT ===== */
         @media print {
-            body { background: white; color: black; }
-            header { background: none; color: black; padding: 0; text-align: left; }
-            header h1 { color: black; margin-top: 0; }
-            header::before { display: none; }
-            .header-content { display: block; }
-            .profile-img { display: none; } 
-            .contact-item { color: black; background: none; border: none; padding: 0; margin-right: 1rem; }
+            body { background: #fff; color: #000; }
+            header { background: none; color: #000; padding: 0; text-align: left; }
+            header h1 { color: #000; }
+            header::after, #dna-canvas { display: none; }
+            .header-content { display: block; text-align: left; }
+            .profile-container, .profile-container::after { display: none; }
+            .contact-item { color: #000; background: none; border: none; padding: 0; margin-right: 1rem; }
             .container { display: block; margin: 0; padding: 0; }
-            section, .sidebar-section { box-shadow: none; border: none; margin: 0; padding: 1rem 0; page-break-inside: avoid; }
+            section, .sidebar-section { box-shadow: none; border: none; margin: 0; padding: 1rem 0; page-break-inside: avoid; transform: none !important; }
+            section:hover { transform: none; box-shadow: none; }
             .section-title { border-bottom: 1px solid #000; }
-            .section-title i, .toggle-icon { display: none; } /* Hide icons in print */
-            a { color: black; text-decoration: none; }
+            .section-title i, .toggle-icon { display: none; }
+            a { color: #000; }
             .publications-container { max-height: none; overflow: visible; border: none; }
-            aside { display: block; margin-top: 2rem; border-top: 2px solid #333; padding-top: 1rem;}
-            .lang-switch-container { display: none; } /* Hide toggle in print */
-            .collapsed .section-body { opacity: 1 !important; max-height: none !important; display: block !important; } /* Force expand all */
-            .lang-zh { display: none !important; } /* Force English for print, or logical default */
+            aside { display: block; margin-top: 2rem; border-top: 2px solid #333; padding-top: 1rem; }
+            .header-controls, .sticky-nav, .stats-section, .back-to-top, .lightbox { display: none !important; }
+            .collapsed .section-body { opacity: 1 !important; max-height: none !important; display: block !important; }
+            .lang-zh { display: none !important; }
             .lang-en { display: block !important; }
+            .fade-in { opacity: 1 !important; transform: none !important; }
+            footer { background: none; color: #666; border-top: 1px solid #ccc; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <header>
-        <div class="lang-switch-container">
-            <button class="lang-btn" onclick="toggleLanguage()">
-                <span class="lang-en">中文 / Chinese</span>
-                <span class="lang-zh">English</span>
+    <!-- ===== STICKY NAV ===== -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="nav-inner">
+            <span class="nav-brand">Shun Zhang</span>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#summary-section" data-section="summary-section">Summary</a></li>
+                <li><a href="#experience-section" data-section="experience-section">Experience</a></li>
+                <li><a href="#pubs-section" data-section="pubs-section">Publications</a></li>
+                <li><a href="#patents-section" data-section="patents-section">Patents</a></li>
+                <li><a href="#edu-section" data-section="edu-section">Education</a></li>
+                <li><a href="#awards-section" data-section="awards-section">Awards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header id="hero">
+        <canvas id="dna-canvas"></canvas>
+        <div class="header-controls">
+            <button class="header-btn" onclick="toggleDarkMode()" id="darkModeBtn" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="header-btn" onclick="toggleLanguage()">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">EN</span>
+            </button>
+            <button class="header-btn" onclick="window.print()" aria-label="Print resume">
+                <i class="fas fa-print"></i>
             </button>
         </div>
 
         <div class="header-content">
-            <!-- 
-                INSTRUCTIONS: 
-                Replace 'https://placehold.co/400x400?text=SZ' with the actual path 
-                to your profile picture file. 
-            -->
             <div class="profile-container">
                 <img src="Headshot.jpg" alt="Shun Zhang Profile Picture" class="profile-img">
             </div>
-            
             <div class="header-text">
                 <h1>
                     <span class="lang-en">Shun Zhang</span>
@@ -638,21 +518,16 @@
                     <span class="lang-en">Director of AI and Data Science | Enterprise AI Platform | Digital Health Innovation</span>
                     <span class="lang-zh">AI与数据科学总监 | 企业级AI平台 | 数字医疗创新</span>
                 </div>
-                
                 <div class="contact-info">
-                    <a href="mailto:Lonver126@gmail.com" class="contact-item" aria-label="Email Shun Zhang">
-                        <i class="fas fa-envelope"></i> Lonver126@gmail.com
-                    </a>
-                    <a href="tel:+18178967968" class="contact-item" aria-label="Call Shun Zhang">
-                        <i class="fas fa-phone"></i> (817) 896-7968
-                    </a>
+                    <a href="mailto:Lonver126@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> Lonver126@gmail.com</a>
+                    <a href="tel:+18178967968" class="contact-item"><i class="fas fa-phone"></i> (817) 896-7968</a>
                     <span class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> 
+                        <i class="fas fa-map-marker-alt"></i>
                         <span class="lang-en">South San Francisco, CA</span>
                         <span class="lang-zh">加利福尼亚州 南旧金山</span>
                     </span>
-                    <a href="https://scholar.google.com/citations?user=GwRcQyYAAAAJ&hl=en" class="contact-item" target="_blank" aria-label="Google Scholar Profile">
-                        <i class="fas fa-graduation-cap"></i> 
+                    <a href="https://scholar.google.com/citations?user=GwRcQyYAAAAJ&hl=en" class="contact-item" target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
                         <span class="lang-en">Google Scholar</span>
                         <span class="lang-zh">谷歌学术</span>
                     </a>
@@ -661,14 +536,52 @@
         </div>
     </header>
 
+    <!-- ===== STATS SECTION ===== -->
+    <div class="stats-section" id="statsSection">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-heartbeat"></i></div>
+                <div class="stat-number"><span class="counter" data-target="15">0</span><span class="plus">+</span></div>
+                <div class="stat-label">
+                    <span class="lang-en">Years Experience</span>
+                    <span class="lang-zh">年经验</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-dna"></i></div>
+                <div class="stat-number"><span class="counter" data-target="30">0</span><span class="plus">+</span></div>
+                <div class="stat-label">
+                    <span class="lang-en">Publications</span>
+                    <span class="lang-zh">学术发表</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-microscope"></i></div>
+                <div class="stat-number"><span class="counter" data-target="13">0</span></div>
+                <div class="stat-label">
+                    <span class="lang-en">Patents</span>
+                    <span class="lang-zh">专利</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-hospital"></i></div>
+                <div class="stat-number"><span class="counter" data-target="6">0</span></div>
+                <div class="stat-label">
+                    <span class="lang-en">Organizations</span>
+                    <span class="lang-zh">任职机构</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
-        <!-- Left Column (Main Content) -->
         <main>
-            <!-- Professional Summary -->
-            <section id="summary-section">
+            <!-- Summary -->
+            <section id="summary-section" class="fade-in">
                 <h2 class="section-title" onclick="toggleSection('summary-section')">
                     <div class="section-title-content">
-                        <i class="fas fa-user-tie"></i> 
+                        <i class="fas fa-user-tie"></i>
                         <span class="lang-en">Executive Summary</span>
                         <span class="lang-zh">执行摘要</span>
                     </div>
@@ -677,22 +590,22 @@
                 <div class="section-body">
                     <ul class="summary-list">
                         <li>
-                            <strong><span class="lang-en">Enterprise AI Strategy and Platform Leadership:</span><span class="lang-zh">企业级AI战略:</span></strong> 
+                            <strong><span class="lang-en">Enterprise AI Strategy and Platform Leadership:</span><span class="lang-zh">企业级AI战略:</span></strong>
                             <span class="lang-en">Led the design and execution of GenAI and agentic AI platforms, aligning AI capabilities with enterprise business objectives. Defined strategic roadmaps, integrated AI solutions into commercial and medical workflows, and ensured ethical AI adoption.</span>
                             <span class="lang-zh">领导GenAI和代理AI平台的设计与执行，将AI能力与企业业务目标保持一致。定义战略路线图，将AI解决方案集成到商业和医疗工作流程中，并确保符合道德的AI采用。</span>
                         </li>
                         <li>
-                            <strong><span class="lang-en">Generative AI Innovation and Product Management:</span><span class="lang-zh">产品管理:</span></strong> 
+                            <strong><span class="lang-en">Generative AI Innovation and Product Management:</span><span class="lang-zh">产品管理:</span></strong>
                             <span class="lang-en">Spearheaded AI-driven product development, incorporating LLMs and AI agents into data ecosystems. Drove experimentation, optimization, and adoption of AI-powered solutions to enhance efficiency and decision-making across business units.</span>
                             <span class="lang-zh">带头进行AI驱动的产品开发，将大语言模型（LLMs）和AI代理纳入数据生态系统。推动AI解决方案的实验、优化和采用，以提高业务部门的效率和决策能力。</span>
                         </li>
                         <li>
-                            <strong><span class="lang-en">Cross-Functional Leadership and AI Governance:</span><span class="lang-zh">治理与领导力:</span></strong> 
+                            <strong><span class="lang-en">Cross-Functional Leadership and AI Governance:</span><span class="lang-zh">治理与领导力:</span></strong>
                             <span class="lang-en">Partnered with senior executives, legal, compliance, and analytics teams to establish AI governance frameworks, ensuring regulatory adherence and responsible AI deployment. Fostered collaboration between technical and business stakeholders to scale AI adoption.</span>
                             <span class="lang-zh">与高管、法律和合规团队合作建立AI治理框架。促进技术和业务利益相关者之间的合作，以扩展负责任的AI采用。</span>
                         </li>
                         <li>
-                            <strong><span class="lang-en">Data Science, ML, and Advanced Analytics Expertise:</span><span class="lang-zh">高级分析:</span></strong> 
+                            <strong><span class="lang-en">Data Science, ML, and Advanced Analytics Expertise:</span><span class="lang-zh">高级分析:</span></strong>
                             <span class="lang-en">Applied machine learning, predictive modeling, and analytics to optimize commercial and medical strategies. Led AI-driven initiatives in customer engagement, diagnostics, and automation to drive measurable business impact.</span>
                             <span class="lang-zh">应用机器学习和预测建模来优化商业和医疗策略。领导诊断和自动化方面的举措，以推动可衡量的业务影响。</span>
                         </li>
@@ -701,16 +614,15 @@
             </section>
 
             <!-- Experience -->
-            <section id="experience-section">
+            <section id="experience-section" class="fade-in">
                 <h2 class="section-title" onclick="toggleSection('experience-section')">
                     <div class="section-title-content">
-                        <i class="fas fa-briefcase"></i> 
+                        <i class="fas fa-briefcase"></i>
                         <span class="lang-en">Professional Experience</span>
                         <span class="lang-zh">工作经历</span>
                     </div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h2>
-                
                 <div class="section-body">
                     <!-- AstraZeneca -->
                     <div class="job">
@@ -718,399 +630,168 @@
                         <div class="job-content">
                             <div class="job-header">
                                 <div>
-                                    <span class="job-title">
-                                        <span class="lang-en">Director of AI and Data Science</span>
-                                        <span class="lang-zh">AI与数据科学总监</span>
-                                    </span>
-                                    <span class="company">
-                                        <span class="lang-en">AstraZeneca - Enterprise AI</span>
-                                        <span class="lang-zh">阿斯利康 - 集团人工智能</span>
-                                    </span>
+                                    <span class="job-title"><span class="lang-en">Director of AI and Data Science</span><span class="lang-zh">AI与数据科学总监</span></span>
+                                    <span class="company"><span class="lang-en">AstraZeneca - Enterprise AI</span><span class="lang-zh">阿斯利康 - 集团人工智能</span></span>
                                 </div>
-                                <div class="date">
-                                    <span class="lang-en">Oct 2023 - Present</span>
-                                    <span class="lang-zh">2023年10月 - 至今</span>
-                                </div>
+                                <div class="date"><span class="lang-en">Oct 2023 - Present</span><span class="lang-zh">2023年10月 - 至今</span></div>
                             </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">Strategic Leadership in AI for Digital Health:</span><span class="lang-zh">数字医疗领域的AI战略领导：</span></strong> 
-                                    <span class="lang-en">Directed the design and deployment of a multi-agent AI platform across oncology and specialty care, supporting medical, commercial, and government affairs use cases. Defined the enterprise AI roadmap and ensured alignment with business priorities, demonstrating measurable impact on patient engagement, provider insights, and market performance.</span>
-                                    <span class="lang-zh">主导多智能体AI平台在肿瘤学及专科领域的设计与落地，支持医学、商业及政府事务等关键业务场景。制定企业级AI路线图并确保与业务战略一致，实现患者参与度、医护洞察及市场表现的可量化提升。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Enterprise-Scale AI Platform Development & Adoption:</span><span class="lang-zh">企业级AI平台开发与规模化应用:</span></strong> 
-                                    <span class="lang-en">Architected and scaled a compliant agentic AI framework leveraging knowledge graphs, retrieval-augmented generation (RAG), and real-time analytics on enterprise healthcare data. Delivered AI solutions across multiple therapy areas (Lung, Breast, Ovarian, Prostate cancers), embedding business insights, competitive intelligence, care gap identification, and action-oriented recommendations into digital platforms. Orchestrated a headquarters-facing application that provided tailored, persona-based analyses for marketing, clinical operations, and business development teams.</span>
-                                    <span class="lang-zh">架构并扩展合规的Agentic AI框架，融合知识图谱、RAG检索增强、以及企业医疗数据的实时分析。在肺癌、乳腺癌、卵巢癌、前列腺癌等多治疗领域交付AI解决方案，将业务洞察、竞争情报、诊疗差距识别及可执行建议嵌入数字化平台。构建总部端应用，为市场营销、临床运营及商务拓展团队提供个性化、角色驱动的分析支持。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Regulated AI Innovation & Governance:</span><span class="lang-zh">受监管环境下的AI创新与治理:</span></strong> 
-                                    <span class="lang-en">Partnered with legal, compliance, medical affairs, privacy, and cybersecurity stakeholders to establish enterprise-wide governance frameworks for responsible AI deployment. Ensured AI platforms adhered to regulatory standards and ethical AI practices, while enabling safe integration of clinical, device, and real-world evidence data into advanced analytics workflows.</span>
-                                    <span class="lang-zh">与法务、合规、医学事务、隐私和网络安全等多方合作，建立企业级的负责任AI治理体系。确保AI平台符合监管要求和伦理AI原则，并安全整合临床、设备及真实世界证据数据，支持先进分析工作流。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">People & Organizational Leadership:</span><span class="lang-zh">人才与组织领导力:</span></strong> 
-                                    <span class="lang-en">Built and scaled global teams of data scientists, ML engineers, and AI product leaders to deliver regulated AI products. Fostered a culture of innovation and accountability, while driving continuous improvement in AI/ML lifecycle management (AgenticOps). Mentored cross-functional teams in AI strategy, model interpretability, and evidence-driven execution, ensuring solutions were clinically relevant, technically robust, and adoption-ready.</span>
-                                    <span class="lang-zh">组建并扩展由数据科学、机器学习工程及AI产品负责人组成的全球团队，交付符合监管要求的AI产品。推动创新与责任文化，持续提升AI/ML生命周期管理（AgenticOps）。指导跨职能团队在AI战略、模型可解释性及循证执行方面的能力建设，确保解决方案具备临床相关性、技术稳健性与可落地性。</span>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">Strategic Leadership in AI for Digital Health:</span><span class="lang-zh">数字医疗领域的AI战略领导：</span></strong> <span class="lang-en">Directed the design and deployment of a multi-agent AI platform across oncology and specialty care, supporting medical, commercial, and government affairs use cases. Defined the enterprise AI roadmap and ensured alignment with business priorities, demonstrating measurable impact on patient engagement, provider insights, and market performance.</span><span class="lang-zh">主导多智能体AI平台在肿瘤学及专科领域的设计与落地，支持医学、商业及政府事务等关键业务场景。制定企业级AI路线图并确保与业务战略一致，实现患者参与度、医护洞察及市场表现的可量化提升。</span></li>
+                                <li><strong><span class="lang-en">Enterprise-Scale AI Platform Development & Adoption:</span><span class="lang-zh">企业级AI平台开发与规模化应用:</span></strong> <span class="lang-en">Architected and scaled a compliant agentic AI framework leveraging knowledge graphs, retrieval-augmented generation (RAG), and real-time analytics on enterprise healthcare data. Delivered AI solutions across multiple therapy areas (Lung, Breast, Ovarian, Prostate cancers), embedding business insights, competitive intelligence, care gap identification, and action-oriented recommendations into digital platforms. Orchestrated a headquarters-facing application that provided tailored, persona-based analyses for marketing, clinical operations, and business development teams.</span><span class="lang-zh">架构并扩展合规的Agentic AI框架，融合知识图谱、RAG检索增强、以及企业医疗数据的实时分析。在肺癌、乳腺癌、卵巢癌、前列腺癌等多治疗领域交付AI解决方案，将业务洞察、竞争情报、诊疗差距识别及可执行建议嵌入数字化平台。构建总部端应用，为市场营销、临床运营及商务拓展团队提供个性化、角色驱动的分析支持。</span></li>
+                                <li><strong><span class="lang-en">Regulated AI Innovation & Governance:</span><span class="lang-zh">受监管环境下的AI创新与治理:</span></strong> <span class="lang-en">Partnered with legal, compliance, medical affairs, privacy, and cybersecurity stakeholders to establish enterprise-wide governance frameworks for responsible AI deployment. Ensured AI platforms adhered to regulatory standards and ethical AI practices, while enabling safe integration of clinical, device, and real-world evidence data into advanced analytics workflows.</span><span class="lang-zh">与法务、合规、医学事务、隐私和网络安全等多方合作，建立企业级的负责任AI治理体系。确保AI平台符合监管要求和伦理AI原则，并安全整合临床、设备及真实世界证据数据，支持先进分析工作流。</span></li>
+                                <li><strong><span class="lang-en">People & Organizational Leadership:</span><span class="lang-zh">人才与组织领导力:</span></strong> <span class="lang-en">Built and scaled global teams of data scientists, ML engineers, and AI product leaders to deliver regulated AI products. Fostered a culture of innovation and accountability, while driving continuous improvement in AI/ML lifecycle management (AgenticOps). Mentored cross-functional teams in AI strategy, model interpretability, and evidence-driven execution, ensuring solutions were clinically relevant, technically robust, and adoption-ready.</span><span class="lang-zh">组建并扩展由数据科学、机器学习工程及AI产品负责人组成的全球团队，交付符合监管要求的AI产品。推动创新与责任文化，持续提升AI/ML生命周期管理（AgenticOps）。指导跨职能团队在AI战略、模型可解释性及循证执行方面的能力建设，确保解决方案具备临床相关性、技术稳健性与可落地性。</span></li>
+                            </ul></div>
                         </div>
                     </div>
-
                     <!-- Alibaba Cloud -->
                     <div class="job">
                         <img src="alibabacloud.png" alt="Alibaba Cloud Logo" class="company-logo">
                         <div class="job-content">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en">Sr. Director of Digital Health & Life Science R&D</span>
-                                    <span class="lang-zh">数字健康与生命科学研发高级总监</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">Alibaba Cloud</span>
-                                    <span class="lang-zh">阿里云 (Alibaba Cloud)</span>
-                                </span>
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title"><span class="lang-en">Sr. Director of Digital Health & Life Science R&D</span><span class="lang-zh">数字健康与生命科学研发高级总监</span></span>
+                                    <span class="company"><span class="lang-en">Alibaba Cloud</span><span class="lang-zh">阿里云 (Alibaba Cloud)</span></span>
+                                </div>
+                                <div class="date"><span class="lang-en">Sept 2021 - June 2023</span><span class="lang-zh">2021年9月 - 2023年6月</span></div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">Sept 2021 - June 2023</span>
-                                <span class="lang-zh">2021年9月 - 2023年6月</span>
-                            </div>
-                        </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">AI and Data Solutions for Digital Health & Market Impact:</span><span class="lang-zh">数字健康与市场影响的AI与数据解决方案:</span></strong> 
-                                    <span class="lang-en">Directed strategic initiatives to build large-scale AI-driven data platforms and ML models that improved patient outcomes, member engagement, and provider alignment across pharmaceutical and healthcare ecosystems. Designed scalable data foundations with advanced predictive targeting, enabling deep insights for customer segmentation. Implemented A/B testing frameworks to drive evidence-based decisions and optimize patient-provider engagement strategies.</span>
-                                    <span class="lang-zh">主导构建大规模AI驱动的数据平台与机器学习模型，提升患者健康结果、用户参与度及医护协同效率，覆盖医药及医疗生态系统。设计可扩展数据底座与高级预测定向模型，为客户细分提供深度洞察。搭建A/B测试框架，推动循证决策并优化患者–医护互动策略。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">High-Performance Data Platforms:</span><span class="lang-zh">高性能数据平台建设:</span></strong> 
-                                    <span class="lang-en">Led the deployment of a real-time data platform supporting large-scale health data processing, population health management, and marketplace analytics. Developed and managed robust ETL pipelines and advanced data warehousing techniques for fast, scalable data retrieval, enhancing clinical decision-making, operational efficiency, and customer support.</span>
-                                    <span class="lang-zh">主导实时数据平台的部署，实现大规模健康数据处理、群体健康管理及市场分析。开发并管理稳健的ETL流程和先进的数据仓库体系，实现快速、可扩展的数据检索，提升临床决策效率、运营效能与客户支持能力。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Federated Learning Platform for Precision Medicine:</span><span class="lang-zh">精准医疗的联邦学习平台:</span></strong> 
-                                    <span class="lang-en">Designed and implemented a federated learning platform for Roche China to securely aggregate data from multiple hospitals. Built patient risk prediction models that improved clinical trial enrollment and early intervention, while maintaining strict patient privacy standards. Established scalable infrastructure with advanced ETL processes and data quality frameworks to power precision medicine and commercial initiatives.</span>
-                                    <span class="lang-zh">为罗氏中国设计并实施联邦学习平台，安全聚合多家医院数据。构建患者风险预测模型，提高临床试验入组效率与早期干预，同时严格保障患者隐私。建立可扩展的基础设施与数据质量体系，为精准医疗与商业战略提供核心支撑。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Clinical Decision Support Systems (SaMD):</span><span class="lang-zh">临床决策支持系统(SaMD):</span></strong> 
-                                    <span class="lang-en">Led the development and deployment of AI-powered Clinical Decision Support Systems (CDSS) embedded into Electronic Health Records (EHR) and implemented across 300+ hospitals and community health centers in China. The CDSS was selected and certified by health authorities as one of only three officially approved systems, improving diagnostic accuracy, reducing medical errors, and standardizing evidence-based care. Enhanced the platform by integrating a medical knowledge graph for structured reasoning and advanced clinical recommendations.</span>
-                                    <span class="lang-zh">领导开发并落地AI驱动的临床决策支持系统（CDSS），集成至电子病历系统（EHR），覆盖中国300+家医院及基层医疗机构。该系统被卫生主管部门选定为三大官方认证系统之一，显著提升诊断准确性、减少医疗错误，并推动循证诊疗标准化。通过整合医学知识图谱，进一步增强结构化推理与高级临床推荐能力。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Biomedical Foundation Models & Research Leadership:</span><span class="lang-zh">生物医学基础模型与科研领导力:</span></strong> 
-                                    <span class="lang-en">reasoning and advanced clinical recommendations.Directed research on large-scale biomedical language models trained on genomic and proteomic sequence data (RNA, DNA, amino acids). Advanced pre-training strategies for functional prediction and protein annotation, with publications in Cell demonstrating the translational impact of AI in biological discovery. Positioned foundational model research as a pipeline for next-generation digital health and precision medicine applications.</span>
-                                    <span class="lang-zh">主导大规模生物医学语言模型研究，训练数据覆盖基因组与蛋白质序列（RNA、DNA、氨基酸）。推进功能预测与蛋白注释的预训练策略，成果发表于顶级期刊《细胞》，展示AI在生物发现中的转化价值。将基础模型研究定位为下一代数字健康与精准医疗应用的核心技术管线。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Technical & Organizational Leadership:</span><span class="lang-zh">技术与组织领导力:</span></strong> 
-                                    <span class="lang-en">Built and led global, high-performing AI/ML teams, instilling a culture of innovation, compliance, and technical rigor. Mentored data scientists, ML engineers, and product leaders to deliver scalable, regulated AI solutions. Represented the organization as an industry thought leader, promoting best practices in AI lifecycle management, digital health strategy, and medical device AI innovation.</span>
-                                    <span class="lang-zh">构建并领导全球高绩效AI/ML团队，打造创新、合规与技术严谨并重的组织文化。指导数据科学家、ML工程师与产品负责人交付可规模化、符合监管要求的AI解决方案。作为行业思想领袖代表组织，推动AI生命周期管理、数字健康战略与医疗器械AI创新的最佳实践。</span>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">AI and Data Solutions for Digital Health & Market Impact:</span><span class="lang-zh">数字健康与市场影响的AI与数据解决方案:</span></strong> <span class="lang-en">Directed strategic initiatives to build large-scale AI-driven data platforms and ML models that improved patient outcomes, member engagement, and provider alignment across pharmaceutical and healthcare ecosystems. Designed scalable data foundations with advanced predictive targeting, enabling deep insights for customer segmentation. Implemented A/B testing frameworks to drive evidence-based decisions and optimize patient-provider engagement strategies.</span><span class="lang-zh">主导构建大规模AI驱动的数据平台与机器学习模型，提升患者健康结果、用户参与度及医护协同效率，覆盖医药及医疗生态系统。设计可扩展数据底座与高级预测定向模型，为客户细分提供深度洞察。搭建A/B测试框架，推动循证决策并优化患者–医护互动策略。</span></li>
+                                <li><strong><span class="lang-en">High-Performance Data Platforms:</span><span class="lang-zh">高性能数据平台建设:</span></strong> <span class="lang-en">Led the deployment of a real-time data platform supporting large-scale health data processing, population health management, and marketplace analytics. Developed and managed robust ETL pipelines and advanced data warehousing techniques for fast, scalable data retrieval, enhancing clinical decision-making, operational efficiency, and customer support.</span><span class="lang-zh">主导实时数据平台的部署，实现大规模健康数据处理、群体健康管理及市场分析。开发并管理稳健的ETL流程和先进的数据仓库体系，实现快速、可扩展的数据检索，提升临床决策效率、运营效能与客户支持能力。</span></li>
+                                <li><strong><span class="lang-en">Federated Learning Platform for Precision Medicine:</span><span class="lang-zh">精准医疗的联邦学习平台:</span></strong> <span class="lang-en">Designed and implemented a federated learning platform for Roche China to securely aggregate data from multiple hospitals. Built patient risk prediction models that improved clinical trial enrollment and early intervention, while maintaining strict patient privacy standards. Established scalable infrastructure with advanced ETL processes and data quality frameworks to power precision medicine and commercial initiatives.</span><span class="lang-zh">为罗氏中国设计并实施联邦学习平台，安全聚合多家医院数据。构建患者风险预测模型，提高临床试验入组效率与早期干预，同时严格保障患者隐私。建立可扩展的基础设施与数据质量体系，为精准医疗与商业战略提供核心支撑。</span></li>
+                                <li><strong><span class="lang-en">Clinical Decision Support Systems (SaMD):</span><span class="lang-zh">临床决策支持系统(SaMD):</span></strong> <span class="lang-en">Led the development and deployment of AI-powered Clinical Decision Support Systems (CDSS) embedded into Electronic Health Records (EHR) and implemented across 300+ hospitals and community health centers in China. The CDSS was selected and certified by health authorities as one of only three officially approved systems, improving diagnostic accuracy, reducing medical errors, and standardizing evidence-based care. Enhanced the platform by integrating a medical knowledge graph for structured reasoning and advanced clinical recommendations.</span><span class="lang-zh">领导开发并落地AI驱动的临床决策支持系统（CDSS），集成至电子病历系统（EHR），覆盖中国300+家医院及基层医疗机构。该系统被卫生主管部门选定为三大官方认证系统之一，显著提升诊断准确性、减少医疗错误，并推动循证诊疗标准化。通过整合医学知识图谱，进一步增强结构化推理与高级临床推荐能力。</span></li>
+                                <li><strong><span class="lang-en">Biomedical Foundation Models & Research Leadership:</span><span class="lang-zh">生物医学基础模型与科研领导力:</span></strong> <span class="lang-en">reasoning and advanced clinical recommendations.Directed research on large-scale biomedical language models trained on genomic and proteomic sequence data (RNA, DNA, amino acids). Advanced pre-training strategies for functional prediction and protein annotation, with publications in Cell demonstrating the translational impact of AI in biological discovery. Positioned foundational model research as a pipeline for next-generation digital health and precision medicine applications.</span><span class="lang-zh">主导大规模生物医学语言模型研究，训练数据覆盖基因组与蛋白质序列（RNA、DNA、氨基酸）。推进功能预测与蛋白注释的预训练策略，成果发表于顶级期刊《细胞》，展示AI在生物发现中的转化价值。将基础模型研究定位为下一代数字健康与精准医疗应用的核心技术管线。</span></li>
+                                <li><strong><span class="lang-en">Technical & Organizational Leadership:</span><span class="lang-zh">技术与组织领导力:</span></strong> <span class="lang-en">Built and led global, high-performing AI/ML teams, instilling a culture of innovation, compliance, and technical rigor. Mentored data scientists, ML engineers, and product leaders to deliver scalable, regulated AI solutions. Represented the organization as an industry thought leader, promoting best practices in AI lifecycle management, digital health strategy, and medical device AI innovation.</span><span class="lang-zh">构建并领导全球高绩效AI/ML团队，打造创新、合规与技术严谨并重的组织文化。指导数据科学家、ML工程师与产品负责人交付可规模化、符合监管要求的AI解决方案。作为行业思想领袖代表组织，推动AI生命周期管理、数字健康战略与医疗器械AI创新的最佳实践。</span></li>
+                            </ul></div>
                         </div>
                     </div>
-
-                    <!-- Microsoft AI for Good Lab -->
+                    <!-- Microsoft -->
                     <div class="job">
                         <img src="msft.png" alt="Microsoft Logo" class="company-logo">
                         <div class="job-content">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en">Director of AI for Health</span>
-                                    <span class="lang-zh">人工智能健康总监</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">Microsoft AI for Good Lab</span>
-                                    <span class="lang-zh">微软 AI for Good 实验室</span>
-                                </span>
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title"><span class="lang-en">Director of AI for Health</span><span class="lang-zh">人工智能健康总监</span></span>
+                                    <span class="company"><span class="lang-en">Microsoft AI for Good Lab</span><span class="lang-zh">微软 AI for Good 实验室</span></span>
+                                </div>
+                                <div class="date"><span class="lang-en">Jan 2020 - Sept 2021</span><span class="lang-zh">2020年1月 - 2021年9月</span></div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">Jan 2020 - Sept 2021</span>
-                                <span class="lang-zh">2020年1月 - 2021年9月</span>
-                            </div>
-                        </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">Enterprise-Grade Azure Data Platform:</span><span class="lang-zh">企业级 Azure 数据平台:</span></strong> 
-                                    <span class="lang-en">Designed and deployed a secure, scalable Azure-based data platform supporting healthcare and nonprofit sectors. Integrated structured and unstructured clinical data sources into a unified data fabric, enabling advanced analytics, real-time dashboards, and AI-driven business intelligence. Leveraged technologies including Azure ML SDK, Data Factory, and Databricks to accelerate model development and deployment in a regulated environment.</span>
-                                    <span class="lang-zh">设计并部署基于 Azure 的安全、可扩展数据平台，服务于医疗与非营利行业。将结构化与非结构化临床数据整合为统一的数据底座，支持高级分析、实时仪表盘和AI驱动的商业智能。使用 Azure ML SDK、Data Factory、Databricks 等技术，加速在受监管环境中的模型开发与部署。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Machine Learning for Diagnostics & Public Health:</span><span class="lang-zh">诊断与公共卫生的机器学习应用:</span></strong> 
-                                    <span class="lang-en">Developed and productionized machine learning models for clinical diagnostics and predictive analytics. Key initiatives included COVID-19 diagnostic risk models using multimodal patient data and cancer detection pipelines with deep learning algorithms (CNNs, gradient boosting). Delivered actionable public health insights with high accuracy, directly supporting early intervention and risk stratification.</span>
-                                    <span class="lang-zh">开发并生产化临床诊断与预测分析的机器学习模型。核心项目包括基于多模态患者数据的 COVID-19 诊断风险模型，以及使用深度学习算法（CNN、梯度提升）的癌症检测流程。交付高准确度的公共卫生洞察，直接支持早期干预和风险分层。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">AI for Medical Imaging & Screening (Novartis Foundation):</span><span class="lang-zh">医学影像与筛查 AI（诺华基金会）:</span></strong> 
-                                    <span class="lang-en">Co-developed a computer vision based AI model to predict leprosy risk from skin images captured via mobile and low-cost camera devices for use in community screening. Built deep convolutional neural networks (CNNs) optimized for low-resource environments, improving screening efficiency and enabling earlier disease detection in underserved populations.</span>
-                                    <span class="lang-zh">联合开发基于计算机视觉的 AI 模型，从移动设备和低成本相机采集的皮肤图像中预测麻风病风险，用于社区筛查。构建适用于资源有限环境的深度卷积神经网络（CNN），显著提升筛查效率，推动弱势地区疾病的早期发现。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">AI for Motion Analysis in Infant Brain Development (National Children Hospital):</span><span class="lang-zh">婴幼儿脑发育运动分析 AI（美国国家儿童医院）:</span></strong> 
-                                    <span class="lang-en">Led the design of a motion capture based AI system using Microsoft Kinect sensors and advanced video processing techniques. Applied pose estimation, temporal sequence modeling (RNN/LSTM), and anomaly detection to assess infant motor function and predict risk of delayed brain development. Developed an interpretable AI framework for clinicians to evaluate developmental trajectories in neonatal care settings.</span>
-                                    <span class="lang-zh">主导基于动作捕捉的 AI 系统设计，使用微软 Kinect 传感器与先进视频处理技术。应用姿态估计、时间序列建模（RNN/LSTM）与异常检测评估婴儿运动功能，预测脑发育迟缓风险。开发可解释的AI框架，协助临床医生在新生儿护理中评估发育轨迹。</span>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">Enterprise-Grade Azure Data Platform:</span><span class="lang-zh">企业级 Azure 数据平台:</span></strong> <span class="lang-en">Designed and deployed a secure, scalable Azure-based data platform supporting healthcare and nonprofit sectors. Integrated structured and unstructured clinical data sources into a unified data fabric, enabling advanced analytics, real-time dashboards, and AI-driven business intelligence. Leveraged technologies including Azure ML SDK, Data Factory, and Databricks to accelerate model development and deployment in a regulated environment.</span><span class="lang-zh">设计并部署基于 Azure 的安全、可扩展数据平台，服务于医疗与非营利行业。将结构化与非结构化临床数据整合为统一的数据底座，支持高级分析、实时仪表盘和AI驱动的商业智能。使用 Azure ML SDK、Data Factory、Databricks 等技术，加速在受监管环境中的模型开发与部署。</span></li>
+                                <li><strong><span class="lang-en">Machine Learning for Diagnostics & Public Health:</span><span class="lang-zh">诊断与公共卫生的机器学习应用:</span></strong> <span class="lang-en">Developed and productionized machine learning models for clinical diagnostics and predictive analytics. Key initiatives included COVID-19 diagnostic risk models using multimodal patient data and cancer detection pipelines with deep learning algorithms (CNNs, gradient boosting). Delivered actionable public health insights with high accuracy, directly supporting early intervention and risk stratification.</span><span class="lang-zh">开发并生产化临床诊断与预测分析的机器学习模型。核心项目包括基于多模态患者数据的 COVID-19 诊断风险模型，以及使用深度学习算法（CNN、梯度提升）的癌症检测流程。交付高准确度的公共卫生洞察，直接支持早期干预和风险分层。</span></li>
+                                <li><strong><span class="lang-en">AI for Medical Imaging & Screening (Novartis Foundation):</span><span class="lang-zh">医学影像与筛查 AI（诺华基金会）:</span></strong> <span class="lang-en">Co-developed a computer vision based AI model to predict leprosy risk from skin images captured via mobile and low-cost camera devices for use in community screening. Built deep convolutional neural networks (CNNs) optimized for low-resource environments, improving screening efficiency and enabling earlier disease detection in underserved populations.</span><span class="lang-zh">联合开发基于计算机视觉的 AI 模型，从移动设备和低成本相机采集的皮肤图像中预测麻风病风险，用于社区筛查。构建适用于资源有限环境的深度卷积神经网络（CNN），显著提升筛查效率，推动弱势地区疾病的早期发现。</span></li>
+                                <li><strong><span class="lang-en">AI for Motion Analysis in Infant Brain Development (National Children Hospital):</span><span class="lang-zh">婴幼儿脑发育运动分析 AI（美国国家儿童医院）:</span></strong> <span class="lang-en">Led the design of a motion capture based AI system using Microsoft Kinect sensors and advanced video processing techniques. Applied pose estimation, temporal sequence modeling (RNN/LSTM), and anomaly detection to assess infant motor function and predict risk of delayed brain development. Developed an interpretable AI framework for clinicians to evaluate developmental trajectories in neonatal care settings.</span><span class="lang-zh">主导基于动作捕捉的 AI 系统设计，使用微软 Kinect 传感器与先进视频处理技术。应用姿态估计、时间序列建模（RNN/LSTM）与异常检测评估婴儿运动功能，预测脑发育迟缓风险。开发可解释的AI框架，协助临床医生在新生儿护理中评估发育轨迹。</span></li>
+                            </ul></div>
                         </div>
                     </div>
-
                     <!-- HCSC -->
                     <div class="job">
-                        <img src="hcsc.png" alt="Health Care Service Corporation Logo" class="company-logo">
+                        <img src="hcsc.png" alt="HCSC Logo" class="company-logo">
                         <div class="job-content">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en">Sr. Director of Data Science</span>
-                                    <span class="lang-zh">数据科学高级总监</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">Health Care Services Corporation (Blue Cross Blue Shiled)</span>
-                                    <span class="lang-zh">蓝十字蓝盾</span>
-                                </span>
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title"><span class="lang-en">Sr. Director of Data Science</span><span class="lang-zh">数据科学高级总监</span></span>
+                                    <span class="company"><span class="lang-en">Health Care Services Corporation (Blue Cross Blue Shiled)</span><span class="lang-zh">蓝十字蓝盾</span></span>
+                                </div>
+                                <div class="date"><span class="lang-en">Jul 2016 - Dec 2019</span><span class="lang-zh">2016年7月 - 2019年12月</span></div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">Jul 2016 - Dec 2019</span>
-                                <span class="lang-zh">2016年7月 - 2019年12月</span>
-                            </div>
-                        </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">Provider Quality Analytics Decision Support:</span><span class="lang-zh">医疗服务方质量分析与决策支持:</span></strong> 
-                                    <span class="lang-en">Quality Measurement BI: Developed quality measurement frameworks using claims/EHR data and BI solutions that improved clinical operations and aligned with strategic goals, enhancing member engagement and Medicare ratings. Population Health Data Integration: Integrated population health data to improve organizational analytics quality and compliance, supporting data-driven decisions in member and provider engagement.</span>
-                                    <span class="lang-zh">质量测量与BI分析： 基于理赔/电子病历（EHR）数据构建质量测量框架和BI解决方案，提升临床运营效率并与战略目标保持一致，增强会员参与度并提高 Medicare 评级。群体健康数据整合： 整合群体健康数据以提升组织分析质量与合规性，为会员与医疗服务方的互动提供数据驱动的决策支持。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Provider and Network Decision Analysis:</span><span class="lang-zh">医疗服务方与网络决策分析:</span></strong> 
-                                    <span class="lang-en">Predictive Models Provider Insights: Built ML-driven models for risk adjustment, disease segmentation, and provider classification, enhancing decision-making for provider and network teams.</span>
-                                    <span class="lang-zh">预测模型与服务方洞察： 构建基于机器学习的风险调整、疾病分层与服务方分类模型，强化医疗服务方与网络团队的决策能力。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Network Visualization and Optimization:</span><span class="lang-zh">医疗网络可视化与优化:</span></strong> 
-                                    <span class="lang-en">Network Analysis Tool Development: Created a BI tool for visualizing provider networks, aiding in contracting and optimization decisions, with data visualizations that strengthened provider partnerships.</span>
-                                    <span class="lang-zh">网络分析工具开发： 创建用于可视化医疗服务网络的BI工具，支持合同谈判与网络优化，通过数据可视化增强与服务方的合作关系。</span>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">Provider Quality Analytics Decision Support:</span><span class="lang-zh">医疗服务方质量分析与决策支持:</span></strong> <span class="lang-en">Quality Measurement BI: Developed quality measurement frameworks using claims/EHR data and BI solutions that improved clinical operations and aligned with strategic goals, enhancing member engagement and Medicare ratings. Population Health Data Integration: Integrated population health data to improve organizational analytics quality and compliance, supporting data-driven decisions in member and provider engagement.</span><span class="lang-zh">质量测量与BI分析： 基于理赔/电子病历（EHR）数据构建质量测量框架和BI解决方案，提升临床运营效率并与战略目标保持一致，增强会员参与度并提高 Medicare 评级。群体健康数据整合： 整合群体健康数据以提升组织分析质量与合规性，为会员与医疗服务方的互动提供数据驱动的决策支持。</span></li>
+                                <li><strong><span class="lang-en">Provider and Network Decision Analysis:</span><span class="lang-zh">医疗服务方与网络决策分析:</span></strong> <span class="lang-en">Predictive Models Provider Insights: Built ML-driven models for risk adjustment, disease segmentation, and provider classification, enhancing decision-making for provider and network teams.</span><span class="lang-zh">预测模型与服务方洞察： 构建基于机器学习的风险调整、疾病分层与服务方分类模型，强化医疗服务方与网络团队的决策能力。</span></li>
+                                <li><strong><span class="lang-en">Network Visualization and Optimization:</span><span class="lang-zh">医疗网络可视化与优化:</span></strong> <span class="lang-en">Network Analysis Tool Development: Created a BI tool for visualizing provider networks, aiding in contracting and optimization decisions, with data visualizations that strengthened provider partnerships.</span><span class="lang-zh">网络分析工具开发： 创建用于可视化医疗服务网络的BI工具，支持合同谈判与网络优化，通过数据可视化增强与服务方的合作关系。</span></li>
+                            </ul></div>
                         </div>
                     </div>
-
                     <!-- NORC -->
-                   <div class="job">
+                    <div class="job">
                         <img src="norc.png" alt="NORC Logo" class="company-logo">
                         <div class="job-content">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en"> Statician III</span>
-                                    <span class="lang-zh">统计师 III</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">NORC at The University of Chicago</span>
-                                    <span class="lang-zh">芝加哥大学-NORC</span>
-                                </span>
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title"><span class="lang-en"> Statician III</span><span class="lang-zh">统计师 III</span></span>
+                                    <span class="company"><span class="lang-en">NORC at The University of Chicago</span><span class="lang-zh">芝加哥大学-NORC</span></span>
+                                </div>
+                                <div class="date"><span class="lang-en">Nov 2014 - July 2016</span><span class="lang-zh">2014年11月 - 2016年7月</span></div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">Nov 2014 - July 2016</span>
-                                <span class="lang-zh">2014年11月 - 2016年7月</span>
-                            </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">2016 Health Datapalooza Competition:</span><span class="lang-zh">2016 Health Datapalooza 数据竞赛:</span></strong> <span class="lang-en">Leveraged CMS Medicaid claims and real-world data to generate evidence supporting policy guidance, healthcare utilization insights, and population-level disease management strategies. Collaborated with policymakers, health economists, and clinical researchers to translate analytic findings into actionable policy recommendations and to inform program design and reimbursement strategies.</span><span class="lang-zh">独立撰写完整方案并成功入选 2016 Health Datapalooza 数据挑战赛。基于电子病历（EMR）、理赔数据及医生自由文本记录构建类风湿性关节炎患者的用药持久性预测模型。该创新方案荣获最终比赛一等奖，并向专家委员会汇报研究成果，为提升类风湿关节炎患者的治疗依从性提供了重要见解。</span></li>
+                                <li><strong><span class="lang-en">Medicare and Medicaid Beneficiary Survey:</span><span class="lang-zh">Medicare & Medicaid 受益人调查项目:</span></strong> <span class="lang-en">Conducted advanced social network analysis (SNA) on HIV patient-provider interactions to quantify network structure, identify high-influence provider nodes, and understand care coordination dynamics. Used network metrics (centrality, modularity, clustering) to compare communities with differing care patterns and explain variations in patient outcomes and treatment adherence.</span><span class="lang-zh">负责评估公共数据发布中的披露风险，并采用混合数据方法，将理赔数据与受益人调查数据结合，生成针对 Medicare Fee-for-Service 患者的深度分析报告。管理完整数据交付流程，包括多轮数据收集与质量控制，确保数据资产的准确性、一致性与可靠性。</span></li>
+                                <li><strong><span class="lang-en">Multiple System Utilization for Tricare Beneficiaries Project:</span><span class="lang-zh">Tricare 受益人多系统使用分析项目:</span></strong> <span class="lang-en">Developed a comprehensive medical decision-making framework using TreeAge to support evidence-based clinical and policy decisions. Built Markov models, Monte Carlo simulations, and decision trees to evaluate disease management strategies and optimize long-term outcomes. Executed a full cost-effectiveness analysis (CEA) on adherence to long-term controller medications in pediatric asthma, assessing both economic impact and clinical benefit.</span><span class="lang-zh">管理覆盖 960 万现役人员、退伍军人及家属的长期理赔数据库。分析并监测 Tricare 受益人在军事医疗体系与民间医疗体系间迁移行为与支付模式。基于护理过程与结局指标对军事机构与民间服务提供者进行质量对比，并使用 Thomson Reuters 的 Medical Episode Group（MEG）工具开展全面的支付对比分析。</span></li>
+                            </ul></div>
                         </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">2016 Health Datapalooza Competition:</span><span class="lang-zh">2016 Health Datapalooza 数据竞赛:</span></strong> 
-                                    <span class="lang-en">Leveraged CMS Medicaid claims and real-world data to generate evidence supporting policy guidance, healthcare utilization insights, and population-level disease management strategies. Collaborated with policymakers, health economists, and clinical researchers to translate analytic findings into actionable policy recommendations and to inform program design and reimbursement strategies.</span>
-                                    <span class="lang-zh">独立撰写完整方案并成功入选 2016 Health Datapalooza 数据挑战赛。基于电子病历（EMR）、理赔数据及医生自由文本记录构建类风湿性关节炎患者的用药持久性预测模型。该创新方案荣获最终比赛一等奖，并向专家委员会汇报研究成果，为提升类风湿关节炎患者的治疗依从性提供了重要见解。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Medicare and Medicaid Beneficiary Survey:</span><span class="lang-zh">Medicare & Medicaid 受益人调查项目:</span></strong> 
-                                    <span class="lang-en">Conducted advanced social network analysis (SNA) on HIV patient-provider interactions to quantify network structure, identify high-influence provider nodes, and understand care coordination dynamics. Used network metrics (centrality, modularity, clustering) to compare communities with differing care patterns and explain variations in patient outcomes and treatment adherence.</span>
-                                    <span class="lang-zh">负责评估公共数据发布中的披露风险，并采用混合数据方法，将理赔数据与受益人调查数据结合，生成针对 Medicare Fee-for-Service 患者的深度分析报告。管理完整数据交付流程，包括多轮数据收集与质量控制，确保数据资产的准确性、一致性与可靠性。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Multiple System Utilization for Tricare Beneficiaries Project:</span><span class="lang-zh">Tricare 受益人多系统使用分析项目:</span></strong> 
-                                    <span class="lang-en">Developed a comprehensive medical decision-making framework using TreeAge to support evidence-based clinical and policy decisions. Built Markov models, Monte Carlo simulations, and decision trees to evaluate disease management strategies and optimize long-term outcomes. Executed a full cost-effectiveness analysis (CEA) on adherence to long-term controller medications in pediatric asthma, assessing both economic impact and clinical benefit.</span>
-                                    <span class="lang-zh">管理覆盖 960 万现役人员、退伍军人及家属的长期理赔数据库。分析并监测 Tricare 受益人在军事医疗体系与民间医疗体系间迁移行为与支付模式。基于护理过程与结局指标对军事机构与民间服务提供者进行质量对比，并使用 Thomson Reuters 的 Medical Episode Group（MEG）工具开展全面的支付对比分析。
-
-。</span>
-                                </li>
-                            </ul>
-                         </div>
-                         </div>
                     </div>
- 
                     <!-- NCPC -->
                     <div class="job">
-                        <img src="ncpc.png" alt="Morehouse School of Medicine Logo" class="company-logo">
+                        <img src="ncpc.png" alt="NCPC Logo" class="company-logo">
                         <div class="job-content">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">
-                                    <span class="lang-en"> Biostatistician/Researcher</span>
-                                    <span class="lang-zh">生物统计师/研究员</span>
-                                </span>
-                                <span class="company">
-                                    <span class="lang-en">National Center for Primary Care</span>
-                                    <span class="lang-zh">国家初级保健中心</span>
-                                </span>
+                            <div class="job-header">
+                                <div>
+                                    <span class="job-title"><span class="lang-en"> Biostatistician/Researcher</span><span class="lang-zh">生物统计师/研究员</span></span>
+                                    <span class="company"><span class="lang-en">National Center for Primary Care</span><span class="lang-zh">国家初级保健中心</span></span>
+                                </div>
+                                <div class="date"><span class="lang-en">May 2011 - Nov 2014</span><span class="lang-zh">2011年5月 - 2014年11月</span></div>
                             </div>
-                            <div class="date">
-                                <span class="lang-en">May 2011 - Nov 2014</span>
-                                <span class="lang-zh">2011年5月 - 2014年11月</span>
-                            </div>
+                            <div class="job-details"><ul>
+                                <li><strong><span class="lang-en">Healthcare Policy & Claims Data Analytics:</span><span class="lang-zh">医疗政策与理赔数据分析:</span></strong> <span class="lang-en">Leveraged CMS Medicaid claims and real-world data to generate evidence supporting policy guidance, healthcare utilization insights, and population-level disease management strategies. Collaborated with policymakers, health economists, and clinical researchers to translate analytic findings into actionable policy recommendations and to inform program design and reimbursement strategies.</span><span class="lang-zh">利用 CMS Medicaid 理赔数据与真实世界数据开展政策研究，提供政策指导证据、医疗服务利用洞察及群体疾病管理策略。与政策制定者、卫生经济学家及临床研究人员合作，将分析结果转化为可执行的政策建议，用于项目设计与支付/报销策略制定。</span></li>
+                                <li><strong><span class="lang-en">Social Network Analysis Provider Network:</span><span class="lang-zh">医疗服务网络的社会网络分析（SNA）:</span></strong> <span class="lang-en">Conducted advanced social network analysis (SNA) on HIV patient-provider interactions to quantify network structure, identify high-influence provider nodes, and understand care coordination dynamics. Used network metrics (centrality, modularity, clustering) to compare communities with differing care patterns and explain variations in patient outcomes and treatment adherence.</span><span class="lang-zh">对 HIV 患者–医疗服务方互动进行高级社会网络分析，量化网络结构，识别高影响力服务提供者节点，并研究护理协同模式。通过中心性、模块度、聚类系数等网络指标比较不同社区的护理模式，解释患者结局与治疗依从性的差异来源。</span></li>
+                                <li><strong><span class="lang-en">Medical Decision Modeling & Health Economics (HEOR):</span><span class="lang-zh">医学决策建模与卫生经济学（HEOR）:</span></strong> <span class="lang-en">Developed a comprehensive medical decision-making framework using TreeAge to support evidence-based clinical and policy decisions. Built Markov models, Monte Carlo simulations, and decision trees to evaluate disease management strategies and optimize long-term outcomes. Executed a full cost-effectiveness analysis (CEA) on adherence to long-term controller medications in pediatric asthma, assessing both economic impact and clinical benefit.</span><span class="lang-zh">使用 TreeAge 构建系统化的医学决策框架，支持循证临床与政策决策。建立 Markov 模型、蒙特卡洛模拟及决策树用于评估疾病管理策略并优化长期健康结局。完成儿童哮喘长期控制药物依从性的全面成本效果分析（CEA），评估经济影响与临床效益。</span></li>
+                            </ul></div>
                         </div>
-                        <div class="job-details">
-                            <ul>
-                                <li>
-                                    <strong><span class="lang-en">Healthcare Policy & Claims Data Analytics:</span><span class="lang-zh">医疗政策与理赔数据分析:</span></strong> 
-                                    <span class="lang-en">Leveraged CMS Medicaid claims and real-world data to generate evidence supporting policy guidance, healthcare utilization insights, and population-level disease management strategies. Collaborated with policymakers, health economists, and clinical researchers to translate analytic findings into actionable policy recommendations and to inform program design and reimbursement strategies.</span>
-                                    <span class="lang-zh">利用 CMS Medicaid 理赔数据与真实世界数据开展政策研究，提供政策指导证据、医疗服务利用洞察及群体疾病管理策略。与政策制定者、卫生经济学家及临床研究人员合作，将分析结果转化为可执行的政策建议，用于项目设计与支付/报销策略制定。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Social Network Analysis Provider Network:</span><span class="lang-zh">医疗服务网络的社会网络分析（SNA）:</span></strong> 
-                                    <span class="lang-en">Conducted advanced social network analysis (SNA) on HIV patient-provider interactions to quantify network structure, identify high-influence provider nodes, and understand care coordination dynamics. Used network metrics (centrality, modularity, clustering) to compare communities with differing care patterns and explain variations in patient outcomes and treatment adherence.</span>
-                                    <span class="lang-zh">对 HIV 患者–医疗服务方互动进行高级社会网络分析，量化网络结构，识别高影响力服务提供者节点，并研究护理协同模式。通过中心性、模块度、聚类系数等网络指标比较不同社区的护理模式，解释患者结局与治疗依从性的差异来源。</span>
-                                </li>
-                                <li>
-                                    <strong><span class="lang-en">Medical Decision Modeling & Health Economics (HEOR):</span><span class="lang-zh">医学决策建模与卫生经济学（HEOR）:</span></strong> 
-                                    <span class="lang-en">Developed a comprehensive medical decision-making framework using TreeAge to support evidence-based clinical and policy decisions. Built Markov models, Monte Carlo simulations, and decision trees to evaluate disease management strategies and optimize long-term outcomes. Executed a full cost-effectiveness analysis (CEA) on adherence to long-term controller medications in pediatric asthma, assessing both economic impact and clinical benefit.</span>
-                                    <span class="lang-zh">使用 TreeAge 构建系统化的医学决策框架，支持循证临床与政策决策。建立 Markov 模型、蒙特卡洛模拟及决策树用于评估疾病管理策略并优化长期健康结局。完成儿童哮喘长期控制药物依从性的全面成本效果分析（CEA），评估经济影响与临床效益。</span>
-                                </li>
-                            </ul>
-                         </div>
-                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Publications -->
-            <section id="pubs-section">
+            <section id="pubs-section" class="fade-in">
                 <h2 class="section-title" onclick="toggleSection('pubs-section')">
-                    <div class="section-title-content">
-                        <i class="fas fa-book"></i> 
-                        <span class="lang-en">Selected Publications</span>
-                        <span class="lang-zh">精选出版物</span>
-                    </div>
+                    <div class="section-title-content"><i class="fas fa-book"></i> <span class="lang-en">Selected Publications</span><span class="lang-zh">精选出版物</span></div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h2>
                 <div class="section-body">
-                    <p style="margin-bottom: 1rem; color: var(--text-light); font-size: 0.9rem;">
-                        <span class="lang-en">Select research from over 30 peer-reviewed publications.</span>
-                        <span class="lang-zh">从30多篇同行评审出版物中精选的研究。</span>
-                    </p>
+                    <p style="margin-bottom:1rem;color:var(--text-light);font-size:0.9rem;"><span class="lang-en">Select research from over 30 peer-reviewed publications.</span><span class="lang-zh">从30多篇同行评审出版物中精选的研究。</span></p>
                     <div class="publications-container">
-                    <div class="pub-item">1. Xin Hou, Shun Zhang, et al. Using artificial intelligence to document the hidden RNA virosphere, <em>Cell</em>, Oct, 2024.</div>
-                    <div class="pub-item">2. Yong He, Shun Zhang, et al. KG-MTT-BERT: Knowledge Graph Enhanced BERT for Multi-Type Medical Text Classification, <em>arXiv</em>, 2022.</div>
-                    <div class="pub-item">3. Yixi Xu, Shun Zhang, et al. Reimagining leprosy elimination with AI analysis... <em>The Lancet Regional Health-Americas</em>, 2022.</div>
-                    <div class="pub-item">4. Shun Zhang, et al. Adherence to highly active antiretroviral therapy impact on clinical and economic outcomes... <em>AIDS Care</em>, 2015.</div>
-                    <div class="pub-item">5. Shun Zhang, et al. The Potential for Elimination of Racial-Ethnic Disparities in HIV Treatment... <em>PLOS One</em>, 2014.</div>
-                    <div class="pub-item">6. Shun Zhang, et al. Disparities in Antiretroviral treatment among Medicaid HIV-infected pregnant women, <em>American Journal of Public Health</em>, 2013.</div>
-                    <div class="pub-item">7. Shun Zhang, et al. Racial disparities in economic and clinical outcomes of pregnancy... <em>Maternal and Child Health Journal</em>, 2012.</div>
-                    <div class="pub-item">8. Dominic Mack, Shun Zhang, et al. Disparities in primary care Electronic Health Record (EHR) adoption rates... <em>Journal of health care for the poor and underserved</em>, 2016.</div>
-                    <div class="pub-item">9. RS Shim, Shun Zhang, et al. Predictors of Mental Health Treatment Seeking... <em>Community Mental Health Journal</em>, 2017.</div>
-                    <div class="pub-item">10. George Rust, Shun Zhang, et al. Counties eliminating racial disparities in colorectal cancer mortality, <em>Cancer</em>, 2016.</div>
-                    <div class="pub-item">11. George Rust, Shun Zhang, et al. Paths to Health Equity - Local Area Variation in Progress Toward Eliminating Breast Cancer Mortality Disparities, <em>Cancer</em>, 2015.</div>
-                    <div class="pub-item">12. George Rust, Shun Zhang, et al. Potential Savings from Increasing Adherence to Inhaled Corticosteroid Therapy... <em>The American Journal of Managed Care</em>, 2015.</div>
-                    <div class="pub-item">13. Abara, Winston E., Shun Zhang, et al. The Influence of Race and Comorbidity on the Timely Initiation of Antiretroviral Therapy... <em>American Journal of Public Health</em>, 2014.</div>
-                    <div class="pub-item">14. George Rust, Shun Zhang, et al. Timing of Emergency Department Visits for Childhood Asthma after Initial Inhaled Corticosteroid Use. <em>Population Health Management</em>, 2014.</div>
-                    <div class="pub-item">15. Khusdeep Malhotra, Shun Zhang, et al. Geographic and Racial Variation in Asthma Prevalence and Emergency Department Use among Medicaid-Enrolled Children. <em>Journal of Asthma</em>, 2014.</div>
-                    <div class="pub-item">16. Ruth S. Shim, Benjamin G. Druss, Shun Zhang, Giyeon Kim, Adesoji Oderinde, Sosunmolu Shoyinka, George Rust.Emergency Department Utilization among Medicaid Beneficiaries with Schizophrenia and Diabetes: The Consequences of Increasing Medical Complexity <em>Schizophrenia Research</em>, Nov 2013.</div>
-                    <div class="pub-item">17. Fang Fang Zhang, Roberto Cardarelli, Joan Carroll, Shun Zhang, Kimberly G. Fulda, Karina Gonzalez,Jamboor K. Vishwanatha, Alfredo Morabia, Regina M. Santella. Physical activity and global genomic DNA methylation in a cancer-free population <em>Epigenetics</em>, March 2011.</div>
+                        <div class="pub-item">1. Xin Hou, Shun Zhang, et al. Using artificial intelligence to document the hidden RNA virosphere, <em>Cell</em>, Oct, 2024.</div>
+                        <div class="pub-item">2. Yong He, Shun Zhang, et al. KG-MTT-BERT: Knowledge Graph Enhanced BERT for Multi-Type Medical Text Classification, <em>arXiv</em>, 2022.</div>
+                        <div class="pub-item">3. Yixi Xu, Shun Zhang, et al. Reimagining leprosy elimination with AI analysis... <em>The Lancet Regional Health-Americas</em>, 2022.</div>
+                        <div class="pub-item">4. Shun Zhang, et al. Adherence to highly active antiretroviral therapy impact on clinical and economic outcomes... <em>AIDS Care</em>, 2015.</div>
+                        <div class="pub-item">5. Shun Zhang, et al. The Potential for Elimination of Racial-Ethnic Disparities in HIV Treatment... <em>PLOS One</em>, 2014.</div>
+                        <div class="pub-item">6. Shun Zhang, et al. Disparities in Antiretroviral treatment among Medicaid HIV-infected pregnant women, <em>American Journal of Public Health</em>, 2013.</div>
+                        <div class="pub-item">7. Shun Zhang, et al. Racial disparities in economic and clinical outcomes of pregnancy... <em>Maternal and Child Health Journal</em>, 2012.</div>
+                        <div class="pub-item">8. Dominic Mack, Shun Zhang, et al. Disparities in primary care Electronic Health Record (EHR) adoption rates... <em>Journal of health care for the poor and underserved</em>, 2016.</div>
+                        <div class="pub-item">9. RS Shim, Shun Zhang, et al. Predictors of Mental Health Treatment Seeking... <em>Community Mental Health Journal</em>, 2017.</div>
+                        <div class="pub-item">10. George Rust, Shun Zhang, et al. Counties eliminating racial disparities in colorectal cancer mortality, <em>Cancer</em>, 2016.</div>
+                        <div class="pub-item">11. George Rust, Shun Zhang, et al. Paths to Health Equity - Local Area Variation in Progress Toward Eliminating Breast Cancer Mortality Disparities, <em>Cancer</em>, 2015.</div>
+                        <div class="pub-item">12. George Rust, Shun Zhang, et al. Potential Savings from Increasing Adherence to Inhaled Corticosteroid Therapy... <em>The American Journal of Managed Care</em>, 2015.</div>
+                        <div class="pub-item">13. Abara, Winston E., Shun Zhang, et al. The Influence of Race and Comorbidity on the Timely Initiation of Antiretroviral Therapy... <em>American Journal of Public Health</em>, 2014.</div>
+                        <div class="pub-item">14. George Rust, Shun Zhang, et al. Timing of Emergency Department Visits for Childhood Asthma after Initial Inhaled Corticosteroid Use. <em>Population Health Management</em>, 2014.</div>
+                        <div class="pub-item">15. Khusdeep Malhotra, Shun Zhang, et al. Geographic and Racial Variation in Asthma Prevalence and Emergency Department Use among Medicaid-Enrolled Children. <em>Journal of Asthma</em>, 2014.</div>
+                        <div class="pub-item">16. Ruth S. Shim, Benjamin G. Druss, Shun Zhang, Giyeon Kim, Adesoji Oderinde, Sosunmolu Shoyinka, George Rust.Emergency Department Utilization among Medicaid Beneficiaries with Schizophrenia and Diabetes: The Consequences of Increasing Medical Complexity <em>Schizophrenia Research</em>, Nov 2013.</div>
+                        <div class="pub-item">17. Fang Fang Zhang, Roberto Cardarelli, Joan Carroll, Shun Zhang, Kimberly G. Fulda, Karina Gonzalez,Jamboor K. Vishwanatha, Alfredo Morabia, Regina M. Santella. Physical activity and global genomic DNA methylation in a cancer-free population <em>Epigenetics</em>, March 2011.</div>
                     </div>
                 </div>
             </section>
 
             <!-- Patents -->
-            <section id="patents-section">
+            <section id="patents-section" class="fade-in">
                 <h2 class="section-title" onclick="toggleSection('patents-section')">
-                    <div class="section-title-content">
-                        <i class="fas fa-lightbulb"></i> 
-                        <span class="lang-en">Patents</span>
-                        <span class="lang-zh">专利</span>
-                    </div>
+                    <div class="section-title-content"><i class="fas fa-lightbulb"></i> <span class="lang-en">Patents</span><span class="lang-zh">专利</span></div>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h2>
                 <div class="section-body">
-                    <p style="margin-bottom: 1rem; color: var(--text-light); font-size: 0.9rem;">
-                        <span class="lang-en">Patents in AI, healthcare analytics, and medical informatics.</span>
-                        <span class="lang-zh">人工智能、医疗分析和医学信息学专利。</span>
-                    </p>
+                    <p style="margin-bottom:1rem;color:var(--text-light);font-size:0.9rem;"><span class="lang-en">Patents in AI, healthcare analytics, and medical informatics.</span><span class="lang-zh">人工智能、医疗分析和医学信息学专利。</span></p>
                     <div class="publications-container">
-                        <div class="pub-item">
-                            <strong>CN116343903A / CN202310274958</strong><br>
-                            <span class="lang-en">Method and Device for Predicting Protein Function, Storage Medium, and Electronic Equipment</span>
-                            <span class="lang-zh">蛋白质功能的预测方法和装置、存储介质及电子设备</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN116092620A / CN202310034164</strong><br>
-                            <span class="lang-en">Method and Device for Processing Clinical Diagnosis Codes in Electronic Medical Records</span>
-                            <span class="lang-zh">电子病历的临床诊断编码的处理方法和装置</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115757710A / CN202211205506</strong><br>
-                            <span class="lang-en">Method and Device for Training Models, and Method and Device for Predicting Sub-Consultation Intents</span>
-                            <span class="lang-zh">训练模型的方法及装置、预测子问诊意图的方法及装置</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115510835A / CN202211154825</strong><br>
-                            <span class="lang-en">Method and Device for Obtaining Text Templates, and Method and Device for Generating Medical Record Text</span>
-                            <span class="lang-zh">获取文本模板的方法及装置、生成病历文本的方法及装置</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115587182A / CN202211138987</strong><br>
-                            <span class="lang-en">Data Processing Method, Device, and Storage Medium</span>
-                            <span class="lang-zh">数据处理方法、设备及存储介质</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115346691A / CN202210979654</strong><br>
-                            <span class="lang-en">Consultation Data Processing Method, Model Training Method, Consultation System, and Electronic Equipment</span>
-                            <span class="lang-zh">问诊数据处理方法、模型训练方法、问诊系统以及电子设备</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115424725A / CN202210986021</strong><br>
-                            <span class="lang-en">Method and Device for Data Analysis, Storage Medium, and Processor</span>
-                            <span class="lang-zh">数据的分析方法和装置、存储介质及处理器</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115394450A / CN202210923554</strong><br>
-                            <span class="lang-en">Data Processing Method and Device, Electronic Equipment</span>
-                            <span class="lang-zh">数据的处理方法和装置、电子设备</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115312199A / CN202210844895</strong><br>
-                            <span class="lang-en">Medical Mathematical Model Configuration Method, Apparatus, Equipment, and Storage Medium</span>
-                            <span class="lang-zh">医疗数学模型配置方法、装置、设备和存储介质</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115170336A / CN202210744781</strong><br>
-                            <span class="lang-en">Method, Device, and Storage Medium for Identifying Abnormal Medical Behavior</span>
-                            <span class="lang-zh">一种异常医疗行为识别方法、设备及存储介质</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115170335A / CN202210743277</strong><br>
-                            <span class="lang-en">Method, Device, and Storage Medium for Identifying Abnormal Medical Visit Records</span>
-                            <span class="lang-zh">一种异常就诊记录的识别方法、设备及存储介质</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115271975A / CN202210682626</strong><br>
-                            <span class="lang-en">Information Processing Method for Medical Insurance Services</span>
-                            <span class="lang-zh">医保业务的信息处理方法</span>
-                        </div>
-                        <div class="pub-item">
-                            <strong>CN115115398A / CN202210675159</strong><br>
-                            <span class="lang-en">Payment Pricing Method and Device for Medical Consumables, Storage Medium, and Processor</span>
-                            <span class="lang-zh">医用耗材的支付定价方法和装置、存储介质及处理器</span>
-                        </div>
+                        <div class="pub-item"><strong>CN116343903A / CN202310274958</strong><br><span class="lang-en">Method and Device for Predicting Protein Function, Storage Medium, and Electronic Equipment</span><span class="lang-zh">蛋白质功能的预测方法和装置、存储介质及电子设备</span></div>
+                        <div class="pub-item"><strong>CN116092620A / CN202310034164</strong><br><span class="lang-en">Method and Device for Processing Clinical Diagnosis Codes in Electronic Medical Records</span><span class="lang-zh">电子病历的临床诊断编码的处理方法和装置</span></div>
+                        <div class="pub-item"><strong>CN115757710A / CN202211205506</strong><br><span class="lang-en">Method and Device for Training Models, and Method and Device for Predicting Sub-Consultation Intents</span><span class="lang-zh">训练模型的方法及装置、预测子问诊意图的方法及装置</span></div>
+                        <div class="pub-item"><strong>CN115510835A / CN202211154825</strong><br><span class="lang-en">Method and Device for Obtaining Text Templates, and Method and Device for Generating Medical Record Text</span><span class="lang-zh">获取文本模板的方法及装置、生成病历文本的方法及装置</span></div>
+                        <div class="pub-item"><strong>CN115587182A / CN202211138987</strong><br><span class="lang-en">Data Processing Method, Device, and Storage Medium</span><span class="lang-zh">数据处理方法、设备及存储介质</span></div>
+                        <div class="pub-item"><strong>CN115346691A / CN202210979654</strong><br><span class="lang-en">Consultation Data Processing Method, Model Training Method, Consultation System, and Electronic Equipment</span><span class="lang-zh">问诊数据处理方法、模型训练方法、问诊系统以及电子设备</span></div>
+                        <div class="pub-item"><strong>CN115424725A / CN202210986021</strong><br><span class="lang-en">Method and Device for Data Analysis, Storage Medium, and Processor</span><span class="lang-zh">数据的分析方法和装置、存储介质及处理器</span></div>
+                        <div class="pub-item"><strong>CN115394450A / CN202210923554</strong><br><span class="lang-en">Data Processing Method and Device, Electronic Equipment</span><span class="lang-zh">数据的处理方法和装置、电子设备</span></div>
+                        <div class="pub-item"><strong>CN115312199A / CN202210844895</strong><br><span class="lang-en">Medical Mathematical Model Configuration Method, Apparatus, Equipment, and Storage Medium</span><span class="lang-zh">医疗数学模型配置方法、装置、设备和存储介质</span></div>
+                        <div class="pub-item"><strong>CN115170336A / CN202210744781</strong><br><span class="lang-en">Method, Device, and Storage Medium for Identifying Abnormal Medical Behavior</span><span class="lang-zh">一种异常医疗行为识别方法、设备及存储介质</span></div>
+                        <div class="pub-item"><strong>CN115170335A / CN202210743277</strong><br><span class="lang-en">Method, Device, and Storage Medium for Identifying Abnormal Medical Visit Records</span><span class="lang-zh">一种异常就诊记录的识别方法、设备及存储介质</span></div>
+                        <div class="pub-item"><strong>CN115271975A / CN202210682626</strong><br><span class="lang-en">Information Processing Method for Medical Insurance Services</span><span class="lang-zh">医保业务的信息处理方法</span></div>
+                        <div class="pub-item"><strong>CN115115398A / CN202210675159</strong><br><span class="lang-en">Payment Pricing Method and Device for Medical Consumables, Storage Medium, and Processor</span><span class="lang-zh">医用耗材的支付定价方法和装置、存储介质及处理器</span></div>
                     </div>
                 </div>
             </section>
@@ -1118,164 +799,309 @@
 
         <!-- Right Sidebar -->
         <aside>
-            <!-- Education -->
-            <div class="sidebar-section" id="edu-section">
+            <div class="sidebar-section fade-in" id="edu-section">
                 <h3 class="sidebar-title" onclick="toggleSection('edu-section')">
-                    <span>
-                        <span class="lang-en">Education</span>
-                        <span class="lang-zh">教育背景</span>
-                    </span>
+                    <span><span class="lang-en">Education</span><span class="lang-zh">教育背景</span></span>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h3>
                 <div class="section-body">
                     <div class="education-item">
                         <img src="mit.png" alt="MIT Logo" class="education-logo">
-                        <div class="education-content">
-                            <div class="degree">
-                                <span class="lang-en">Summer Courses</span>
-                                <span class="lang-zh">暑期课程</span>
-                            </div>
-                            <div class="school">MIT (2014)</div>
-                        </div>
+                        <div class="education-content"><div class="degree"><span class="lang-en">Summer Courses</span><span class="lang-zh">暑期课程</span></div><div class="school">MIT (2014)</div></div>
                     </div>
                     <div class="education-item">
                         <img src="unthsc.png" alt="UNT Health Science Center Logo" class="education-logo">
-                        <div class="education-content">
-                            <div class="degree">
-                                <span class="lang-en">Master of Public Health (Biostatistics)</span>
-                                <span class="lang-zh">生物统计学硕士</span>
-                            </div>
-                            <div class="school">
-                                <span class="lang-en">Univ. of North Texas Health Science Center</span>
-                                <span class="lang-zh">北得克萨斯大学健康科学中心</span>
-                            </div>
-                        </div>
+                        <div class="education-content"><div class="degree"><span class="lang-en">Master of Public Health (Biostatistics)</span><span class="lang-zh">生物统计学硕士</span></div><div class="school"><span class="lang-en">Univ. of North Texas Health Science Center</span><span class="lang-zh">北得克萨斯大学健康科学中心</span></div></div>
                     </div>
                     <div class="education-item">
                         <img src="ahmu.png" alt="Anhui Medical University Logo" class="education-logo">
-                        <div class="education-content">
-                            <div class="degree">MBBS</div>
-                            <div class="school">
-                                <span class="lang-en">Anhui Medical University</span>
-                                <span class="lang-zh">安徽医科大学</span>
-                            </div>
-                        </div>
+                        <div class="education-content"><div class="degree">MBBS</div><div class="school"><span class="lang-en">Anhui Medical University</span><span class="lang-zh">安徽医科大学</span></div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Skills & Certs -->
-            <div class="sidebar-section" id="skills-section">
+            <div class="sidebar-section fade-in" id="skills-section">
                 <h3 class="sidebar-title" onclick="toggleSection('skills-section')">
-                    <span>
-                        <span class="lang-en">Certifications</span>
-                        <span class="lang-zh">证书与认证</span>
-                    </span>
+                    <span><span class="lang-en">Certifications</span><span class="lang-zh">证书与认证</span></span>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h3>
                 <div class="section-body">
-                    <div class="skill-tag">Azure Data Fundamentals</div>
-                    <div class="skill-tag">Azure AI Fundamentals</div>
-                    <div class="skill-tag">Machine Learning (Coursera)</div>
-                    <div class="skill-tag">Deep Learning (Coursera)</div>
-                    <div class="skill-tag">Certified Base Programmer SAS 9</div>
-                    <div class="skill-tag">Certified Advanced Programmer SAS 9</div>
-                    <div class="skill-tag">Certified in Public Health</div>
+                    <div class="skill-tag" data-tooltip="Microsoft Azure DP-900">Azure Data Fundamentals</div>
+                    <div class="skill-tag" data-tooltip="Microsoft Azure AI-900">Azure AI Fundamentals</div>
+                    <div class="skill-tag" data-tooltip="Stanford / Coursera">Machine Learning (Coursera)</div>
+                    <div class="skill-tag" data-tooltip="deeplearning.ai / Coursera">Deep Learning (Coursera)</div>
+                    <div class="skill-tag" data-tooltip="SAS Institute">Certified Base Programmer SAS 9</div>
+                    <div class="skill-tag" data-tooltip="SAS Institute">Certified Advanced Programmer SAS 9</div>
+                    <div class="skill-tag" data-tooltip="NBPHE">Certified in Public Health</div>
                 </div>
             </div>
 
-            <!-- Awards -->
-            <div class="sidebar-section" id="awards-section">
+            <div class="sidebar-section fade-in" id="awards-section">
                 <h3 class="sidebar-title" onclick="toggleSection('awards-section')">
-                    <span>
-                        <span class="lang-en">Honors & Awards</span>
-                        <span class="lang-zh">荣誉与奖项</span>
-                    </span>
+                    <span><span class="lang-en">Honors & Awards</span><span class="lang-zh">荣誉与奖项</span></span>
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </h3>
                 <div class="section-body">
                     <div class="award-item">
-                        <div class="degree">
-                            <span class="lang-en">1st Place Winner</span>
-                            <span class="lang-zh">一等奖获得者</span>
-                        </div>
+                        <div class="degree"><span class="lang-en">1st Place Winner</span><span class="lang-zh">一等奖获得者</span></div>
                         <div class="school">2016 Health Datapalooza Data Challenge</div>
-                        <a href="https://www.norc.org/research/library/team-from-norc-takes-top-health-analytics-prize-at-health-datapa.html" target="_blank" class="award-link">
-                            <i class="fas fa-external-link-alt"></i> 
-                            <span class="lang-en">Read More</span>
-                            <span class="lang-zh">了解更多</span>
-                        </a>
-                        <img src="joebiden.jpeg" alt="2016 Health Datapalooza Award Ceremony" class="award-photo">
+                        <a href="https://www.norc.org/research/library/team-from-norc-takes-top-health-analytics-prize-at-health-datapa.html" target="_blank" class="award-link"><i class="fas fa-external-link-alt"></i> <span class="lang-en">Read More</span><span class="lang-zh">了解更多</span></a>
+                        <img src="joebiden.jpeg" alt="2016 Health Datapalooza Award Ceremony" class="award-photo" onclick="openLightbox(this.src, this.alt)">
                     </div>
                     <div class="award-item">
-                        <div class="degree">
-                            <span class="lang-en">Digital Edge 50 Award</span>
-                            <span class="lang-zh">Digital Edge 50 奖</span>
-                        </div>
-                        <div class="school">
-                            <span class="lang-en">Development of Provider and Network Decision Analytics (PANDA) tool by CIO Magazine in 2018</span>
-                            <span class="lang-zh">2018年CIO杂志颁发，表彰医疗服务方与网络决策分析（PANDA）工具的开发</span>
-                        </div>
-                        <a href="https://www.cio.com/article/219689/analytics-gives-hcsc-the-pulse-of-provider-care.html" target="_blank" class="award-link">
-                            <i class="fas fa-external-link-alt"></i> 
-                            <span class="lang-en">Read More</span>
-                            <span class="lang-zh">了解更多</span>
-                        </a>
+                        <div class="degree"><span class="lang-en">Digital Edge 50 Award</span><span class="lang-zh">Digital Edge 50 奖</span></div>
+                        <div class="school"><span class="lang-en">Development of Provider and Network Decision Analytics (PANDA) tool by CIO Magazine in 2018</span><span class="lang-zh">2018年CIO杂志颁发，表彰医疗服务方与网络决策分析（PANDA）工具的开发</span></div>
+                        <a href="https://www.cio.com/article/219689/analytics-gives-hcsc-the-pulse-of-provider-care.html" target="_blank" class="award-link"><i class="fas fa-external-link-alt"></i> <span class="lang-en">Read More</span><span class="lang-zh">了解更多</span></a>
                     </div>
                     <div class="award-item">
-                        <div class="degree">
-                            <span class="lang-en">Dean's List 2009</span>
-                            <span class="lang-zh">2009年院长荣誉榜</span>
-                        </div>
-                        <div class="school">
-                            <span class="lang-en">University of North Texas Health Science Center</span>
-                            <span class="lang-zh">北得克萨斯大学健康科学中心</span>
-                        </div>
+                        <div class="degree"><span class="lang-en">Dean's List 2009</span><span class="lang-zh">2009年院长荣誉榜</span></div>
+                        <div class="school"><span class="lang-en">University of North Texas Health Science Center</span><span class="lang-zh">北得克萨斯大学健康科学中心</span></div>
                     </div>
                 </div>
             </div>
         </aside>
     </div>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <footer>
-        <p>&copy; Oct 2025 Shun Zhang. All rights reserved.</p>
+        <p>&copy; 2025 Shun Zhang. All rights reserved.</p>
     </footer>
 
     <script>
-        // 1. Toggle Sections Function
-        function toggleSection(id) {
-            const section = document.getElementById(id);
-            if (section) {
-                section.classList.toggle('collapsed');
-            }
+    // ===== COLLAPSIBLE SECTIONS =====
+    function toggleSection(id) {
+        const s = document.getElementById(id);
+        if (s) s.classList.toggle('collapsed');
+    }
+
+    // ===== LANGUAGE SWITCHER =====
+    let currentLang = 'en';
+    function toggleLanguage() {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        document.querySelectorAll('.lang-en').forEach(el => el.style.display = currentLang === 'en' ? 'inline' : 'none');
+        document.querySelectorAll('.lang-zh').forEach(el => el.style.display = currentLang === 'zh' ? 'inline' : 'none');
+    }
+
+    // ===== DARK MODE =====
+    function toggleDarkMode() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        document.getElementById('darkModeBtn').innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    }
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+            });
         }
+    })();
 
-        // 2. Language Switcher Function
-        let currentLang = 'en';
+    // ===== LIGHTBOX =====
+    function openLightbox(src, alt) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightboxImg').alt = alt;
+        document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 
-        function toggleLanguage() {
-            // Toggle state
-            currentLang = currentLang === 'en' ? 'zh' : 'en';
-            
-            // Get all language elements
-            const enElements = document.querySelectorAll('.lang-en');
-            const zhElements = document.querySelectorAll('.lang-zh');
+    // ===== STICKY NAV + BACK TO TOP + ACTIVE SECTION =====
+    const nav = document.getElementById('stickyNav');
+    const backBtn = document.getElementById('backToTop');
+    const navLinksAll = document.querySelectorAll('.sticky-nav .nav-links a');
+    const sectionIds = Array.from(navLinksAll).map(a => a.dataset.section);
 
-            // Toggle visibility based on currentLang
-            if (currentLang === 'zh') {
-                enElements.forEach(el => el.style.display = 'none');
-                zhElements.forEach(el => el.style.display = 'inline'); // or block, but inline is safer for spans
-            } else {
-                enElements.forEach(el => el.style.display = 'inline');
-                zhElements.forEach(el => el.style.display = 'none');
-            }
-        }
-
-        // Ensure correct initial state on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const zhElements = document.querySelectorAll('.lang-zh');
-            zhElements.forEach(el => el.style.display = 'none');
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        // Show/hide nav
+        nav.classList.toggle('visible', y > 400);
+        // Show/hide back-to-top
+        backBtn.classList.toggle('visible', y > 600);
+        // Active section highlighting
+        let current = '';
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top < 120) current = id;
         });
+        navLinksAll.forEach(a => a.classList.toggle('active', a.dataset.section === current));
+    });
+
+    // ===== HAMBURGER MENU =====
+    document.getElementById('hamburger').addEventListener('click', function() {
+        this.classList.toggle('open');
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+    // Close menu on link click
+    document.querySelectorAll('#navLinks a').forEach(a => {
+        a.addEventListener('click', () => {
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // ===== ANIMATED COUNTERS =====
+    let counterDone = false;
+    function animateCounters() {
+        if (counterDone) return;
+        const counters = document.querySelectorAll('.counter');
+        const section = document.getElementById('statsSection');
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            counterDone = true;
+            counters.forEach(c => {
+                const target = +c.dataset.target;
+                const duration = 1500;
+                const step = target / (duration / 16);
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) { c.textContent = target; clearInterval(timer); }
+                    else c.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+    }
+    window.addEventListener('scroll', animateCounters);
+
+    // ===== SCROLL FADE-IN =====
+    function initFadeIn() {
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    }
+
+    // ===== DNA / MOLECULE CANVAS ANIMATION =====
+    function initDNACanvas() {
+        const canvas = document.getElementById('dna-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [], frame = 0;
+
+        function resize() {
+            const header = canvas.parentElement;
+            w = canvas.width = header.offsetWidth;
+            h = canvas.height = header.offsetHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Create particles: molecules + DNA nodes
+        for (let i = 0; i < 35; i++) {
+            particles.push({
+                x: Math.random() * 2000, y: Math.random() * 800,
+                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.3,
+                r: Math.random() * 3 + 1.5,
+                type: Math.random() < 0.3 ? 'helix' : 'molecule',
+                phase: Math.random() * Math.PI * 2,
+                opacity: Math.random() * 0.3 + 0.1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            frame += 0.008;
+
+            // Draw connection lines between nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = 'rgba(0,169,206,' + (0.08 * (1 - dist / 150)) + ')';
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw DNA helix strands
+            ctx.lineWidth = 1.2;
+            for (let strand = 0; strand < 2; strand++) {
+                const baseX = w * (0.15 + strand * 0.7);
+                ctx.beginPath();
+                for (let y = 0; y < h; y += 3) {
+                    const wave = Math.sin(y * 0.02 + frame * 2 + strand * Math.PI) * 40;
+                    const x = baseX + wave;
+                    if (y === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(245,132,38,0.12)';
+                ctx.stroke();
+                // Second strand (paired)
+                ctx.beginPath();
+                for (let y = 0; y < h; y += 3) {
+                    const wave = Math.sin(y * 0.02 + frame * 2 + strand * Math.PI + Math.PI) * 40;
+                    const x = baseX + wave;
+                    if (y === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(0,169,206,0.10)';
+                ctx.stroke();
+                // Cross-rungs
+                for (let y = 20; y < h; y += 35) {
+                    const w1 = Math.sin(y * 0.02 + frame * 2 + strand * Math.PI) * 40;
+                    const w2 = Math.sin(y * 0.02 + frame * 2 + strand * Math.PI + Math.PI) * 40;
+                    ctx.beginPath();
+                    ctx.moveTo(baseX + w1, y);
+                    ctx.lineTo(baseX + w2, y);
+                    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+
+            // Draw particles
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < -20) p.x = w + 20; if (p.x > w + 20) p.x = -20;
+                if (p.y < -20) p.y = h + 20; if (p.y > h + 20) p.y = -20;
+                // Molecule node
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                const pulse = Math.sin(frame * 3 + p.phase) * 0.1 + 0.9;
+                if (p.type === 'helix') {
+                    ctx.fillStyle = 'rgba(245,132,38,' + (p.opacity * pulse) + ')';
+                } else {
+                    ctx.fillStyle = 'rgba(0,169,206,' + (p.opacity * pulse) + ')';
+                }
+                ctx.fill();
+                // Glow
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+                ctx.fillStyle = p.type === 'helix'
+                    ? 'rgba(245,132,38,' + (p.opacity * 0.08) + ')'
+                    : 'rgba(0,169,206,' + (p.opacity * 0.06) + ')';
+                ctx.fill();
+            });
+
+            requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'none');
+        initFadeIn();
+        initDNACanvas();
+        animateCounters();
+    });
     </script>
 </body>
 </html>
