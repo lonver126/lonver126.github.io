@@ -387,6 +387,18 @@
             background: #0C2340; color: rgba(255,255,255,0.5);
         }
         footer a { color: var(--accent); }
+        .visitor-stats {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.75rem; margin-bottom: 1rem;
+        }
+        .visitor-stats .stat-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.35rem 0.85rem; border-radius: 999px;
+            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75);
+            font-size: 0.8rem;
+        }
+        .visitor-stats .stat-pill i { color: var(--accent); }
+        .visitor-stats .stat-pill strong { color: #fff; font-weight: 600; }
 
         /* ===== RESPONSIVE: TABLET (768-1024) ===== */
         @media (max-width: 1024px) {
@@ -876,6 +888,20 @@
     </button>
 
     <footer>
+        <p class="visitor-stats" aria-live="polite">
+            <span class="stat-pill">
+                <i class="fas fa-eye"></i>
+                <span class="lang-en">Page Views:</span>
+                <span class="lang-zh">访问量：</span>
+                <strong id="pageViewsCount">…</strong>
+            </span>
+            <span class="stat-pill">
+                <i class="fas fa-user"></i>
+                <span class="lang-en">Unique Visitors:</span>
+                <span class="lang-zh">访客数：</span>
+                <strong id="uniqueVisitorsCount">…</strong>
+            </span>
+        </p>
         <p>&copy; 2025 Shun Zhang. All rights reserved.</p>
     </footer>
 
@@ -1097,12 +1123,51 @@
         draw();
     }
 
+    // ===== VISITOR COUNTER =====
+    // Uses abacus.jasoncameron.dev — a free, no-auth hit counter API.
+    // /hit/<ns>/<key>  increments and returns { value: N }
+    // /get/<ns>/<key>  reads without incrementing
+    async function initVisitorCounter() {
+        const NS = 'lonver126-github-io';
+        const VIEWS_KEY = 'page-views';
+        const VISITORS_KEY = 'unique-visitors';
+        const VISITED_FLAG = 'sz_portfolio_visited_v1';
+        const fmt = n => Number(n).toLocaleString('en-US');
+        const setText = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        };
+        const fetchJson = async (url) => {
+            const r = await fetch(url, { cache: 'no-store' });
+            if (!r.ok) throw new Error('counter request failed: ' + r.status);
+            return r.json();
+        };
+        try {
+            // Page views: increment on every load
+            const views = await fetchJson(`https://abacus.jasoncameron.dev/hit/${NS}/${VIEWS_KEY}`);
+            setText('pageViewsCount', fmt(views.value));
+        } catch (e) {
+            setText('pageViewsCount', '—');
+        }
+        try {
+            // Unique visitors: increment only the first time this browser visits
+            const isNew = !localStorage.getItem(VISITED_FLAG);
+            const path = isNew ? 'hit' : 'get';
+            const visitors = await fetchJson(`https://abacus.jasoncameron.dev/${path}/${NS}/${VISITORS_KEY}`);
+            setText('uniqueVisitorsCount', fmt(visitors.value));
+            if (isNew) localStorage.setItem(VISITED_FLAG, '1');
+        } catch (e) {
+            setText('uniqueVisitorsCount', '—');
+        }
+    }
+
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'none');
         initFadeIn();
         initDNACanvas();
         animateCounters();
+        initVisitorCounter();
     });
     </script>
 </body>
